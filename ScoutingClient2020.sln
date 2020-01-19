@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoutingClient2020", "ScoutingClient2020\ScoutingClient2020.csproj", "{C86779C1-577B-4954-A06C-E1CB6AAAB4E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C86779C1-577B-4954-A06C-E1CB6AAAB4E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C86779C1-577B-4954-A06C-E1CB6AAAB4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C86779C1-577B-4954-A06C-E1CB6AAAB4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C86779C1-577B-4954-A06C-E1CB6AAAB4E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F37E6E6-2402-4536-8510-C40E2934939D}
+	EndGlobalSection
+EndGlobal
