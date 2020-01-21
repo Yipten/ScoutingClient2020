@@ -3,7 +3,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 StartupUri="MainWindow.xaml">
 	<Application.Resources>
-		<Style TargetType="Window" x:Key="Default">
+		<Style TargetType="Window" x:Key="WindowDefault">
 			<Setter Property="Background" Value="Black" />
 			<Setter Property="FontFamily" Value="Lucida Sans" />
 			<Setter Property="FontSize" Value="12" />
@@ -12,10 +12,25 @@
 			<Setter Property="Background" Value="Black" />
 			<Setter Property="BorderThickness" Value="0" />
 		</Style>
+		<Style TargetType="StackPanel">
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+		</Style>
 		<Style TargetType="Label">
 			<Setter Property="Foreground" Value="White" />
 			<Setter Property="FontFamily" Value="Lucida Sans" />
 			<Setter Property="FontSize" Value="12" />
+			<Setter Property="Margin" Value="5" />
+		</Style>
+		<Style TargetType="Button">
+			<Setter Property="Height" Value="25" />
+			<Setter Property="Width" Value="75" />
+			<Setter Property="Margin" Value="5" />
+		</Style>
+		<Style TargetType="ComboBox">
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Height" Value="25" />
+			<Setter Property="Margin" Value="5" />
 		</Style>
 	</Application.Resources>
 </Application>

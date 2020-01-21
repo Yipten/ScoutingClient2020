@@ -3,11 +3,16 @@
 	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:vm="clr-namespace:ScoutingClient2020.ViewModels"
 	  mc:Ignorable="d" 
 	  d:DesignHeight="450" d:DesignWidth="800"
 	  Title="TeamStatsView">
-
+	<Page.DataContext>
+		<vm:TeamStatsViewModel />
+	</Page.DataContext>
 	<Grid>
-
+		<StackPanel Orientation="Vertical">
+			<ComboBox ItemsSource="{Binding Teams}" />
+		</StackPanel>
 	</Grid>
 </Page>

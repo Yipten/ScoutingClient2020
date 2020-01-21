@@ -9,7 +9,7 @@
 		Width="650"
 		WindowState="Maximized"
 		ResizeMode="CanResize"
-		Style="{StaticResource Default}">
+		Style="{StaticResource WindowDefault}">
 	<Grid>
 		<TabControl>
 			<TabItem Header="Team Stats">
