@@ -3,6 +3,7 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:pages="clr-namespace:ScoutingClient2020.Pages"
 		mc:Ignorable="d"
 		Title="Scouting Client 2020"
 		Height="650"
@@ -10,26 +11,24 @@
 		WindowState="Maximized"
 		ResizeMode="CanResize"
 		Style="{StaticResource WindowDefault}">
-	<Grid>
-		<TabControl>
-			<TabItem Header="Team Stats">
-				<Frame Source="Views/TeamStatsView.xaml" />
-			</TabItem>
-			<TabItem Header="Team Trends">
-				<Frame Source="Views/TeamTrendsView.xaml" />
-			</TabItem>
-			<TabItem Header="Match History">
-				<Frame Source="Views/MatchHistoryView.xaml" />
-			</TabItem>
-			<TabItem Header="Match Predictions">
-				<Frame Source="Views/MatchPredictionsView.xaml" />
-			</TabItem>
-			<TabItem Header="Scoring">
-				<Frame Source="Views/ScoringView.xaml" />
-			</TabItem>
-			<TabItem Header="Data Management">
-				<Frame Source="Views/DataManagementView.xaml" />
-			</TabItem>
-		</TabControl>
-	</Grid>
+	<TabControl>
+		<TabItem Header="Team Stats">
+			<Frame Source="Views/TeamStatsView.xaml" />
+		</TabItem>
+		<TabItem Header="Team Trends">
+			<!--<Frame Source="Views/TeamTrendsPage.xaml" />-->
+		</TabItem>
+		<TabItem Header="Match History">
+			<!--<Frame Source="Views/MatchHistoryPage.xaml" />-->
+		</TabItem>
+		<TabItem Header="Match Predictions">
+			<!--<Frame Source="Views/MatchPredictionsPage.xaml" />-->
+		</TabItem>
+		<TabItem Header="Scoring">
+			<!--<Frame Source="Views/ScoringPage.xaml" />-->
+		</TabItem>
+		<TabItem Header="Data Management">
+			<!--<Frame Source="Views/DataManagementPage.xaml" />-->
+		</TabItem>
+	</TabControl>
 </Window>

@@ -15,7 +15,7 @@ namespace ScoutingClient2020.Static {
 		/// Static constructor for DBClient class.
 		/// </summary>
 		static DBClient() {
-			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/2020_tvr_master.sqlite";
+			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/2019_rumble_master.sqlite";
 			// if the file doesn't exist...
 			while (!File.Exists(_filePath)) {
 				MessageBox.Show("Database file at location \"" + _filePath + "\" does not exist.\n\nPlease manually locate the file.", "File not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);

@@ -77,31 +77,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Static\BTClient.cs" />
-    <Compile Include="Static\DBClient.cs" />
-    <Compile Include="ViewModels\DataManagementViewModel.cs" />
-    <Compile Include="ViewModels\MatchHistoryViewModel.cs" />
-    <Compile Include="ViewModels\MatchPredictionsViewModel.cs" />
-    <Compile Include="ViewModels\ScoringViewModel.cs" />
+    <Compile Include="Models\BTClient.cs" />
+    <Compile Include="Models\DBClient.cs" />
+    <Compile Include="Models\Stat.cs" />
     <Compile Include="ViewModels\TeamStatsViewModel.cs" />
-    <Compile Include="ViewModels\TeamTrendsViewModel.cs" />
-    <Compile Include="Views\DataManagementView.xaml.cs">
-      <DependentUpon>DataManagementView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MatchHistoryView.xaml.cs">
-      <DependentUpon>MatchHistoryView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MatchPredictionsView.xaml.cs">
-      <DependentUpon>MatchPredictionsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ScoringView.xaml.cs">
-      <DependentUpon>ScoringView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\TeamStatsView.xaml.cs">
       <DependentUpon>TeamStatsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TeamTrendsView.xaml.cs">
-      <DependentUpon>TeamTrendsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -115,27 +96,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\DataManagementView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MatchHistoryView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MatchPredictionsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ScoringView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\TeamStatsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TeamTrendsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,9 +128,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
