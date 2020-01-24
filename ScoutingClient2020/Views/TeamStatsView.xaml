@@ -12,6 +12,8 @@
 		<vm:TeamStatsViewModel />
 	</Page.DataContext>
 	<StackPanel Orientation="Vertical">
-		<ComboBox ItemsSource="{Binding Teams, Mode=OneWay}" />
+		<ComboBox ItemsSource="{Binding Teams, Mode=OneWay}" SelectedItem="{Binding SelectedTeam, Mode=OneWayToSource}" />
+		<Label Content="{Binding TestStat, Mode=OneWay}" />
+		<Button Content="Update" Command="{Binding UpdateCommand}" />
 	</StackPanel>
 </Page>

@@ -12,7 +12,7 @@ namespace ScoutingClient2020 {
 		/// <summary>
 		/// Initializes an instance of the Stat class.
 		/// </summary>
-		/// <param name="query">Query to get data.</param>
+		/// <param name="query">SQL query to get data.</param>
 		/// <param name="label">Text to display.</param>
 		/// <param name="suffix">Suffix of number (unit, percent, item name, etc.).</param>
 		public Stat(string query, string label = "", string suffix = "") {
@@ -24,9 +24,10 @@ namespace ScoutingClient2020 {
 		/// <summary>
 		/// Updates value by executing query on the database.
 		/// </summary>
-		public void Update() {
+		/// <param name="team">Team to get data for.</param>
+		public void Update(int team) {
 			try {
-				_value = Math.Round(DBClient.ExecuteQuery(_query, true)[0], 2);
+				_value = Math.Round(DBClient.ExecuteQuery(string.Format(_query, team), true)[0], 2);
 			} catch (ArgumentOutOfRangeException) {
 				_value = null;
 			}
