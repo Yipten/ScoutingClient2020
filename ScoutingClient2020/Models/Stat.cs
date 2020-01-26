@@ -1,13 +1,17 @@
 ﻿using ScoutingClient2020.Static;
 using System;
+using System.ComponentModel;
 
 namespace ScoutingClient2020 {
-	class Stat {
+	class Stat : INotifyPropertyChanged {
+		public string Display { get => _display; set { _display = value; OnPropertyChanged(nameof(Display)); } }
+
 		private double? _value = null;
 		private readonly string
 			_query,
 			_label,
 			_suffix;
+		private string _display;
 
 		/// <summary>
 		/// Initializes an instance of the Stat class.
@@ -31,6 +35,7 @@ namespace ScoutingClient2020 {
 			} catch (ArgumentOutOfRangeException) {
 				_value = null;
 			}
+			Display = ToString();
 		}
 
 		/// <summary>
@@ -40,5 +45,15 @@ namespace ScoutingClient2020 {
 		public override string ToString() {
 			return _label + ": " + (_value.HasValue ? _value + _suffix : "null");
 		}
+
+		#region INotifyPropertyChanged Members
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChanged(string propertyName) {
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		#endregion
 	}
 }
