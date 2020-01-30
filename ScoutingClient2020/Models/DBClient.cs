@@ -15,7 +15,7 @@ namespace ScoutingClient2020.Static {
 		/// Static constructor for DBClient class.
 		/// </summary>
 		static DBClient() {
-			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/2019_rumble_master.sqlite";
+			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/2020_test_master.sqlite";
 			// if the file doesn't exist...
 			while (!File.Exists(_filePath)) {
 				MessageBox.Show("Database file at location \"" + _filePath + "\" does not exist.\n\nPlease manually locate the file.", "File not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -38,8 +38,6 @@ namespace ScoutingClient2020.Static {
 		/// <param name="path">File path where databases from tablets are stored.</param>
 		/// <param name="databases">Array of database file names to merge from.</param>
 		public static void Merge(string path, string fileName) {
-			throw new NotImplementedException("Merge method is not yet implemented because database format is not yet finalized.");
-
 			string[] databases = {
 				fileName + "_Blue_1",
 				fileName + "_Blue_2",
@@ -48,102 +46,82 @@ namespace ScoutingClient2020.Static {
 				fileName + "_Red_2",
 				fileName + "_Red_3",
 			};
-			int dbNum = 0;
-			foreach (string db in databases) {
-				string pathTemp = path + db + ".sqlite";
+			for (int i = 0; i < databases.Length; i++) {
+				string pathTemp = path + databases[i] + ".sqlite";
 				// skip file if it doesn't exist
 				if (!File.Exists(pathTemp))
 					continue;
 				// query to merge data into database on computer
 				ExecuteQuery(
 					// attach database to merge data from
-					"ATTACH DATABASE '" + pathTemp + "' AS db" + dbNum + ";" +
+					"ATTACH DATABASE '" + pathTemp + "' AS db" + i + ";" +
 					// insert data into master database
 					"INSERT INTO RawData(" +
 						"ScoutName, " +
-						"MatchNumber," +
+						"MatchNumber, " +
 						"ReplayMatch, " +
 						"TeamNumber, " +
 						"AllianceColor, " +
 						"StartPosition, " +
-						"PreloadedItem, " +
-						"CrossHabLine, " +
-						"SandCargoShip, " +
-						"SandCargoRocket1, " +
-						"SandCargoRocket2, " +
-						"SandCargoRocket3, " +
-						"SandCargoDrop, " +
-						"SandPanelShip, " +
-						"SandPanelRocket1, " +
-						"SandPanelRocket2, " +
-						"SandPanelRocket3, " +
-						"SandPanelDrop, " +
-						"TeleCargoShip, " +
-						"TeleCargoRocket1, " +
-						"TeleCargoRocket2, " +
-						"TeleCargoRocket3, " +
-						"TeleCargoDrop, " +
-						"TelePanelShip, " +
-						"TelePanelRocket1, " +
-						"TelePanelRocket2, " +
-						"TelePanelRocket3, " +
-						"TelePanelDrop, " +
-						"HabLevelAchieved, " +
-						"HabLevelAttempted, " +
+						"Preloaded, " +
+						"InitLine, " +
+						"AutoLower, " +
+						"AutoOuter, " +
+						"AutoInner, " +
+						"AutoDrop, " +
+						"TeleLower, " +
+						"TeleOuter, " +
+						"TeleInner, " +
+						"TeleDrop, " +
+						"RotationControl, " +
+						"PositionControl, " +
+						"ClimbAttempt, " +
+						"ClimbSuccess, " +
+						"ClimbBalanced, " +
 						"HadAssistance, " +
 						"AssistedOthers, " +
-						"DefenseAmount, " +
-						"DefenseSkill, " +
-						"DefendedAmount, " +
-						"DefendedSkill, " +
+						"DefensePlay, " +
+						"DefensePlayStrength, " +
+						"DefenseAgainst, " +
+						"DefenseAgainstStrength, " +
 						"Fouls, " +
 						"Breakdown, " +
 						"Comments" +
 					") " +
 					"SELECT " +
 						"ScoutName, " +
-						"MatchNumber," +
+						"MatchNumber, " +
 						"ReplayMatch, " +
 						"TeamNumber, " +
 						"AllianceColor, " +
 						"StartPosition, " +
-						"PreloadedItem, " +
-						"CrossHabLine, " +
-						"SandCargoShip, " +
-						"SandCargoRocket1, " +
-						"SandCargoRocket2, " +
-						"SandCargoRocket3, " +
-						"SandCargoDrop, " +
-						"SandPanelShip, " +
-						"SandPanelRocket1, " +
-						"SandPanelRocket2, " +
-						"SandPanelRocket3, " +
-						"SandPanelDrop, " +
-						"TeleCargoShip, " +
-						"TeleCargoRocket1, " +
-						"TeleCargoRocket2, " +
-						"TeleCargoRocket3, " +
-						"TeleCargoDrop, " +
-						"TelePanelShip, " +
-						"TelePanelRocket1, " +
-						"TelePanelRocket2, " +
-						"TelePanelRocket3, " +
-						"TelePanelDrop, " +
-						"HabLevelAchieved, " +
-						"HabLevelAttempted, " +
+						"Preloaded, " +
+						"InitLine, " +
+						"AutoLower, " +
+						"AutoOuter, " +
+						"AutoInner, " +
+						"AutoDrop, " +
+						"TeleLower, " +
+						"TeleOuter, " +
+						"TeleInner, " +
+						"TeleDrop, " +
+						"RotationControl, " +
+						"PositionControl, " +
+						"ClimbAttempt, " +
+						"ClimbSuccess, " +
+						"ClimbBalanced, " +
 						"HadAssistance, " +
 						"AssistedOthers, " +
-						"DefenseAmount, " +
-						"DefenseSkill, " +
-						"DefendedAmount, " +
-						"DefendedSkill, " +
+						"DefensePlay, " +
+						"DefensePlayStrength, " +
+						"DefenseAgainst, " +
+						"DefenseAgainstStrength, " +
 						"Fouls, " +
 						"Breakdown, " +
-						"Comments" +
-					" " +
-					"FROM db" + dbNum + ".RawData;" +
+						"Comments " +
+					"FROM db" + i + ".RawData;" +
 					// detach database when done
-					"DETACH DATABASE db" + dbNum + ";",
+					"DETACH DATABASE db" + i + ";",
 					false
 				);
 				// delete database file after it has been merged from
@@ -155,7 +133,6 @@ namespace ScoutingClient2020.Static {
 					} catch (IOException) {
 						MessageBox.Show("The file at \"" + pathTemp + "\" is currently open in another program. Please close it and try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 					}
-				dbNum++;
 			}
 		}
 
