@@ -10,24 +10,26 @@
 		WindowState="Maximized"
 		ResizeMode="CanResize"
 		Style="{StaticResource WindowDefault}">
-	<TabControl>
-		<TabItem Header="Team Stats">
-			<Frame Source="Views/TeamStatsView.xaml" />
-		</TabItem>
-		<TabItem Header="Team Trends">
-			<!--<Frame Source="Views/TeamTrendsPage.xaml" />-->
-		</TabItem>
-		<TabItem Header="Match History">
-			<!--<Frame Source="Views/MatchHistoryPage.xaml" />-->
-		</TabItem>
-		<TabItem Header="Match Predictions">
-			<!--<Frame Source="Views/MatchPredictionsPage.xaml" />-->
-		</TabItem>
-		<TabItem Header="Scoring">
-			<!--<Frame Source="Views/ScoringPage.xaml" />-->
-		</TabItem>
-		<TabItem Header="Data Management">
-			<!--<Frame Source="Views/DataManagementPage.xaml" />-->
-		</TabItem>
-	</TabControl>
+	<Grid>
+		<TabControl>
+			<TabItem Header="Team Stats">
+				<Frame Source="Views/TeamStatsView.xaml" />
+			</TabItem>
+			<TabItem Header="Team Trends">
+				<Frame Source="Views/TeamTrendsView.xaml" />
+			</TabItem>
+			<TabItem Header="Match History">
+				<Frame Source="Views/MatchHistoryView.xaml" />
+			</TabItem>
+			<TabItem Header="Match Predictions">
+				<Frame Source="Views/MatchPredictionsView.xaml" />
+			</TabItem>
+			<TabItem Header="Scoring">
+				<Frame Source="Views/ScoringView.xaml" />
+			</TabItem>
+			<TabItem Header="Data Management">
+				<Frame Source="Views/DataManagementView.xaml" />
+			</TabItem>
+		</TabControl>
+	</Grid>
 </Window>
