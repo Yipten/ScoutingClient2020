@@ -1,15 +1,16 @@
-﻿using ScoutingClient2020.ViewModels;
+﻿using ScoutingClient2020.Models;
+using ScoutingClient2020.ViewModels;
 using System;
 using System.Windows.Input;
 
 namespace ScoutingClient2020.Commands {
-	class ReceiveFileCommand : ICommand {
+	class MergeCommand : ICommand {
 		private DataManagementViewModel _viewModel;
 
-		public ReceiveFileCommand(DataManagementViewModel viewModel) {
+		public MergeCommand(DataManagementViewModel viewModel) {
 			_viewModel = viewModel;
 		}
-
+		
 		public event EventHandler CanExecuteChanged {
 			add {
 				CommandManager.RequerySuggested += value;
@@ -20,11 +21,11 @@ namespace ScoutingClient2020.Commands {
 		}
 
 		public bool CanExecute(object parameter) {
-			return _viewModel.Bluetooth.IsBluetoothSupported && !_viewModel.Bluetooth.IsReceiving;
+			return !_viewModel.Bluetooth.IsReceiving;
 		}
 
 		public void Execute(object parameter) {
-			_viewModel.ReceiveFile();
+			DBClient.Merge("2020_test");
 		}
 	}
 }

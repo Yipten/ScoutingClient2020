@@ -78,6 +78,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CancelCommand.cs" />
+    <Compile Include="Commands\MergeCommand.cs" />
     <Compile Include="Commands\ReceiveFileCommand.cs" />
     <Compile Include="Models\BTClient.cs" />
     <Compile Include="Models\DBClient.cs" />

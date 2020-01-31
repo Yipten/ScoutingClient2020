@@ -5,38 +5,39 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 
-namespace ScoutingClient2020.Static {
+namespace ScoutingClient2020.Models {
 	static class DBClient {
 		private static readonly SQLiteConnection _connection;
 		private static readonly string _filePath;
+		private static readonly string _fileName;
 
 		/// <summary>
 		/// Static constructor for the DBClient class.
 		/// </summary>
 		static DBClient() {
-			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/2020_test_master.sqlite";
+			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/";
+			_fileName = "2019_rumble_master.sqlite";	//"2020_test_master.sqlite";
 			// if the file doesn't exist...
-			while (!File.Exists(_filePath)) {
-				MessageBox.Show("Database file at location \"" + _filePath + "\" does not exist.\n\nPlease manually locate the file.", "File not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			while (!File.Exists(_filePath + _fileName)) {
+				MessageBox.Show("Database file at location \"" + _filePath + _fileName + "\" does not exist.\n\nPlease manually locate the file.", "File not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				OpenFileDialog openFileDialog = new OpenFileDialog {
 					InitialDirectory = "C:\\",
 					Filter = "SQLite database files (*.db; *.db3; *.sqlite; *.sqlite3)|*.db; *.db3; *.sqlite; *.sqlite3 | All files (*.*)|*.*",
 					FilterIndex = 1
 				};
 				if (openFileDialog.ShowDialog() == true) {
-					_filePath = openFileDialog.FileName;
+					_fileName = openFileDialog.SafeFileName;
 				}
 			}
 			// connect to database
-			_connection = new SQLiteConnection("Data Source=" + _filePath + "; Version=3");
+			_connection = new SQLiteConnection("Data Source=" + _filePath + _fileName + "; Version=3");
 		}
 
 		/// <summary>
 		/// Merges data from tablets into database on computer.
 		/// </summary>
-		/// <param name="path">File path where databases from tablets are stored.</param>
 		/// <param name="databases">Array of database file names to merge from.</param>
-		public static void Merge(string path, string fileName) {
+		public static void Merge(string fileName) {
 			string[] databases = {
 				fileName + "_Blue_1",
 				fileName + "_Blue_2",
@@ -46,7 +47,7 @@ namespace ScoutingClient2020.Static {
 				fileName + "_Red_3",
 			};
 			for (int i = 0; i < databases.Length; i++) {
-				string pathTemp = path + databases[i] + ".sqlite";
+				string pathTemp = _filePath + databases[i] + ".sqlite";
 				// skip file if it doesn't exist
 				if (!File.Exists(pathTemp))
 					continue;

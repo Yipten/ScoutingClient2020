@@ -1,4 +1,4 @@
-﻿using ScoutingClient2020.Static;
+﻿using ScoutingClient2020.Models;
 using System.Collections.Generic;
 
 namespace ScoutingClient2020.ViewModels {

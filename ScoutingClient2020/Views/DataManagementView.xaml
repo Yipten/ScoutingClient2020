@@ -15,8 +15,8 @@
 			<Label Content="Data Management" FontSize="24" />
 			<Label Content="Bluetooth" FontSize="20" />
 			<StackPanel Orientation="Horizontal">
-				<Button Content="Receive File" Command="{Binding ReceiveFileCommand}" IsEnabled="{Binding !IsReceiving, Mode=OneWay}" />
-				<Button Content="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding IsReceiving, Mode=OneWay}" />
+				<Button Content="Receive File" Command="{Binding ReceiveFileCommand}" />
+				<Button Content="Cancel" Command="{Binding CancelCommand}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Status: " />
@@ -24,8 +24,7 @@
 				<Label Content="" />
 			</StackPanel>
 			<Label Content="SQLite Databases" FontSize="20" />
-			<!--TODO: bind command-->
-			<Button Content="Merge" />
+			<Button Content="Merge" Command="{Binding MergeCommand}" />
 		</StackPanel>
 	</Grid>
 </Page>

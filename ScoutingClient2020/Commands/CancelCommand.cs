@@ -10,10 +10,17 @@ namespace ScoutingClient2020.Commands {
 			_viewModel = viewModel;
 		}
 
-		public event EventHandler CanExecuteChanged;
+		public event EventHandler CanExecuteChanged {
+			add {
+				CommandManager.RequerySuggested += value;
+			}
+			remove {
+				CommandManager.RequerySuggested -= value;
+			}
+		}
 
 		public bool CanExecute(object parameter) {
-			return _viewModel.IsReceiving;
+			return _viewModel.Bluetooth.IsReceiving;
 		}
 
 		public void Execute(object parameter) {

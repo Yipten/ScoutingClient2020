@@ -1,8 +1,7 @@
-﻿using ScoutingClient2020.Static;
-using System;
+﻿using System;
 using System.ComponentModel;
 
-namespace ScoutingClient2020 {
+namespace ScoutingClient2020.Models {
 	class Stat : INotifyPropertyChanged {
 		public string Display { get => _display; set { _display = value; OnPropertyChanged(nameof(Display)); } }
 
