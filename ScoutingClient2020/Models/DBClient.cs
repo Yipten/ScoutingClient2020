@@ -11,7 +11,7 @@ namespace ScoutingClient2020.Static {
 		private static readonly string _filePath;
 
 		/// <summary>
-		/// Static constructor for DBClient class.
+		/// Static constructor for the DBClient class.
 		/// </summary>
 		static DBClient() {
 			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/2020_test_master.sqlite";

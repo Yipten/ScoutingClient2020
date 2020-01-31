@@ -7,7 +7,27 @@
 	  mc:Ignorable="d" 
 	  d:DesignHeight="450" d:DesignWidth="800"
 	  Title="DataManagementView">
+	<Page.DataContext>
+		<vm:DataManagementViewModel />
+	</Page.DataContext>
 	<Grid>
-		
+		<StackPanel Orientation="Vertical">
+			<Label Content="Data Management" FontSize="24" />
+			<Label Content="Bluetooth" FontSize="20" />
+			<StackPanel Orientation="Horizontal">
+				<!--TODO: bind command-->
+				<Button Content="Receive File" />
+				<!--TODO: bind command-->
+				<Button Content="Cancel" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Status: " />
+				<!--TODO: bind to BTClient property-->
+				<Label Content="" />
+			</StackPanel>
+			<Label Content="SQLite Databases" FontSize="20" />
+			<!--TODO: bind command-->
+			<Button Content="Merge" />
+		</StackPanel>
 	</Grid>
 </Page>

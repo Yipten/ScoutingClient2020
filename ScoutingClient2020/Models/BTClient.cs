@@ -10,6 +10,9 @@ namespace ScoutingClient2020.Static {
 
 		private static CancellationTokenSource _cancellationTokenSource;
 
+		/// <summary>
+		/// Static constructor for the BTClient class.
+		/// </summary>
 		static BTClient() {
 			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/";
 		}

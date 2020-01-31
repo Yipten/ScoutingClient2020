@@ -10,6 +10,9 @@ namespace ScoutingClient2020.ViewModels {
 		private readonly Stat[] _stats;
 		private int _selectedTeam;
 
+		/// <summary>
+		/// Initializes a new instance of the TeamStatsViewModel class.
+		/// </summary>
 		public TeamStatsViewModel() {
 			Teams = new List<int>();
 			TestStat = new Stat("SELECT 100.0 * SUM(CrossHabLine) / COUNT() FROM RawData WHERE TeamNumber = {0} AND StartPosition BETWEEN 3 AND 5;", "Test Value", "units");
@@ -18,6 +21,9 @@ namespace ScoutingClient2020.ViewModels {
 			UpdateTeamsList();
 		}
 
+		/// <summary>
+		/// Updates the list of selectable teams from database.
+		/// </summary>
 		private void UpdateTeamsList() {
 			Teams.Clear();
 			List<double> doubleTeams = DBClient.ExecuteQuery(
@@ -31,10 +37,9 @@ namespace ScoutingClient2020.ViewModels {
 			}
 		}
 
-		public bool CanUpdate() {
-			return true;
-		}
-
+		/// <summary>
+		/// Updates all data fields on the page.
+		/// </summary>
 		public void Update() {
 			foreach (Stat stat in _stats)
 				stat.Update(_selectedTeam);
