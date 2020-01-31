@@ -20,9 +20,8 @@ namespace ScoutingClient2020.Static {
 		/// <summary>
 		/// Receives a file via bluetooth.
 		/// </summary>
-		/// <returns>True if successful.</returns>
 		public static async void ReceiveFile() {
-			if (!BluetoothRadio.IsSupported) {
+			if (BluetoothRadio.IsSupported) {
 				// create new CancellationToken for this file transfer
 				_cancellationTokenSource = new CancellationTokenSource();
 				CancellationToken cancellationToken = _cancellationTokenSource.Token;

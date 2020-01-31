@@ -15,10 +15,8 @@
 			<Label Content="Data Management" FontSize="24" />
 			<Label Content="Bluetooth" FontSize="20" />
 			<StackPanel Orientation="Horizontal">
-				<!--TODO: bind command-->
-				<Button Content="Receive File" />
-				<!--TODO: bind command-->
-				<Button Content="Cancel" />
+				<Button Content="Receive File" Command="{Binding ReceiveFileCommand}" IsEnabled="{Binding !IsReceiving, Mode=OneWay}" />
+				<Button Content="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding IsReceiving, Mode=OneWay}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Status: " />
