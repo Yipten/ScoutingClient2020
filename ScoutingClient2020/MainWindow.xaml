@@ -10,7 +10,7 @@
 		WindowState="Maximized"
 		ResizeMode="CanResize"
 		Style="{StaticResource WindowDefault}"
-		Icon="Images\20-SSG-Whiteletter.png">
+		Icon="Images/20-SSG-Whiteletter.png">
 	<Grid>
 		<TabControl>
 			<TabItem Header="Team Stats">

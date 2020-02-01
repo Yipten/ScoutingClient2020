@@ -7,7 +7,43 @@
 	  mc:Ignorable="d" 
 	  d:DesignHeight="450" d:DesignWidth="800"
 	  Title="ScoringView">
+	<Page.DataContext>
+		<vm:ScoringViewModel />
+	</Page.DataContext>
 	<Grid>
-		
+		<StackPanel Orientation="Vertical">
+			<CheckBox Content="Leave Init Line" IsChecked="{Binding Scorer.InitLine, Mode=TwoWay}" />
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Autonomous Bottom Port" />
+				<TextBox Text="{Binding Scorer.AutoBottom, Mode=TwoWay}" Style="{StaticResource SmallNumber}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Autonomous Outer Port" />
+				<TextBox Text="{Binding Scorer.AutoOuter, Mode=TwoWay}" Style="{StaticResource SmallNumber}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Autonomous Inner Port" />
+				<TextBox Text="{Binding Scorer.AutoInner, Mode=TwoWay}" Style="{StaticResource SmallNumber}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Teleop Bottom Port" />
+				<TextBox Text="{Binding Scorer.TeleBottom, Mode=TwoWay}" Style="{StaticResource SmallNumber}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Teleop Outer Port" />
+				<TextBox Text="{Binding Scorer.TeleOuter, Mode=TwoWay}" Style="{StaticResource SmallNumber}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Teleop Inner Port" />
+				<TextBox Text="{Binding Scorer.TeleInner, Mode=TwoWay}" Style="{StaticResource SmallNumber}" />
+			</StackPanel>
+			<CheckBox Content="Rotation Control" IsChecked="{Binding Scorer.RotationControl, Mode=TwoWay}" />
+			<CheckBox Content="Position Control" IsChecked="{Binding Scorer.PositionControl, Mode=TwoWay}" />
+			<CheckBox Content="Parked" IsChecked="{Binding Scorer.Park, Mode=TwoWay}" />
+			<CheckBox Content="Climbed" IsChecked="{Binding Scorer.Climb, Mode=TwoWay}" />
+			<CheckBox Content="Balanced Climb" IsChecked="{Binding Scorer.Balanced, Mode=TwoWay}" />
+			<Label Content="{Binding Scorer.ScoreStr}" />
+			<Button Content="Update" Command="{Binding UpdateScoreCommand}" />
+		</StackPanel>
 	</Grid>
 </Page>
