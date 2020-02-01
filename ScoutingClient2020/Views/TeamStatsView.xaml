@@ -5,7 +5,6 @@
 	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	  xmlns:vm="clr-namespace:ScoutingClient2020.ViewModels"
 	  mc:Ignorable="d" 
-	  d:DesignHeight="450" d:DesignWidth="800"
 	  Title="TeamStatsView">
 	<Page.DataContext>
 		<vm:TeamStatsViewModel />
@@ -13,10 +12,51 @@
 	<Grid>
 		<StackPanel Orientation="Vertical">
 			<StackPanel Orientation="Horizontal">
-				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" />
+				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
-				<Label Content="{Binding TestStat.Display}" />
+				<StackPanel Orientation="Vertical">
+					<Label Content="Overall Averages" FontWeight="Bold" />
+					<Label Content="{Binding AvgAll.Display}" />
+					<Label Content="{Binding AvgAllBottom.Display}" />
+					<Label Content="{Binding AvgAllOuter.Display}" />
+					<Label Content="{Binding AvgAllInner.Display}" />
+					<Label Content="{Binding AvgAllDrop.Display}" />
+					<Label Content="{Binding AvgAllPoints.Display}" />
+					<Label Content="{Binding AvgFouls.Display}" />
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Label Content="Autonomous Averages" FontWeight="Bold" />
+					<Label Content="{Binding AvgAuto.Display}" />
+					<Label Content="{Binding AvgAutoBottom.Display}" />
+					<Label Content="{Binding AvgAutoOuter.Display}" />
+					<Label Content="{Binding AvgAutoInner.Display}" />
+					<Label Content="{Binding AvgAutoDrop.Display}" />
+					<Label Content="{Binding AvgAutoPoints.Display}" />
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Label Content="Teleop Averages" FontWeight="Bold" />
+					<Label Content="{Binding AvgTele.Display}" />
+					<Label Content="{Binding AvgTeleBottom.Display}" />
+					<Label Content="{Binding AvgTeleOuter.Display}" />
+					<Label Content="{Binding AvgTeleInner.Display}" />
+					<Label Content="{Binding AvgTeleDrop.Display}" />
+					<Label Content="{Binding AvgTelePoints.Display}" />
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Label Content="Maximums" FontWeight="Bold" />
+					<Label Content="{Binding MaxAll.Display}" />
+					<Label Content="{Binding MaxAllPoints.Display}" />
+					<Label Content="{Binding MaxAuto.Display}" />
+					<Label Content="{Binding MaxAutoPoints.Display}" />
+					<Label Content="{Binding MaxTele.Display}" />
+					<Label Content="{Binding MaxTelePoints.Display}" />
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Label Content="Percents" FontWeight="Bold" />
+					<Label Content="{Binding PercentInitLine.Display}" />
+					<Label Content="{Binding PercentClimb.Display}" />
+				</StackPanel>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

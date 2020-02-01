@@ -16,7 +16,7 @@ namespace ScoutingClient2020.Models {
 		/// </summary>
 		static DBClient() {
 			_filePath = "C:/Users/Andrew/Documents/Team 20/2019-20/Scouting/Data/";
-			_fileName = "2019_rumble_master.sqlite";	//"2020_test_master.sqlite";
+			_fileName = "2020_test_master.sqlite";
 			// if the file doesn't exist...
 			while (!File.Exists(_filePath + _fileName)) {
 				MessageBox.Show("Database file at location \"" + _filePath + _fileName + "\" does not exist.\n\nPlease manually locate the file.", "File not found", MessageBoxButton.OK, MessageBoxImage.Exclamation);
