@@ -12,7 +12,8 @@
 	<Grid>
 		<StackPanel Orientation="Vertical">
 			<StackPanel Orientation="Horizontal">
-				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" />
+				<Label Content="Select a team:" />
+				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" HorizontalAlignment="Left" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<StackPanel Orientation="Vertical">
