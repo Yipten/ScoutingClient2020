@@ -80,7 +80,6 @@
     <Compile Include="Commands\CancelCommand.cs" />
     <Compile Include="Commands\MergeCommand.cs" />
     <Compile Include="Commands\ReceiveFileCommand.cs" />
-    <Compile Include="Commands\UpdateScoreCommand.cs" />
     <Compile Include="Models\BTClient.cs" />
     <Compile Include="Models\DBClient.cs" />
     <Compile Include="Models\Scorer.cs" />
