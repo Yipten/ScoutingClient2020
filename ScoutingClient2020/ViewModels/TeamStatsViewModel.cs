@@ -103,19 +103,8 @@ namespace ScoutingClient2020.ViewModels {
 				MaxTelePoints
 			};
 
-			UpdateTeamsList();
+			Teams = DBClient.GetTeams();
 			Update();
-		}
-
-		/// <summary>
-		/// Updates the list of selectable teams from database.
-		/// </summary>
-		private void UpdateTeamsList() {
-			Teams.Clear();
-			List<double> doubleTeams = DBClient.ExecuteQuery("SELECT DISTINCT TeamNumber FROM RawData ORDER BY TeamNumber ASC;", true);
-			foreach (double team in doubleTeams) {
-				Teams.Add((int)team);
-			}
 		}
 
 		/// <summary>

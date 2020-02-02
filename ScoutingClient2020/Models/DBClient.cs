@@ -141,7 +141,7 @@ namespace ScoutingClient2020.Models {
 		/// </summary>
 		/// <param name="query">Query to execute.</param>
 		/// <param name="read">True if results are desired. False if not.</param>
-		/// <returns></returns>
+		/// <returns>List of data retrieved from the database.</returns>
 		public static List<double> ExecuteQuery(string query, bool read) {
 			_connection.Open();
 			SQLiteCommand command = new SQLiteCommand(query, _connection);
@@ -170,6 +170,18 @@ namespace ScoutingClient2020.Models {
 				if (!string.IsNullOrWhiteSpace(s))
 					data.Add(double.Parse(s));
 			return data;
+		}
+
+		/// <summary>
+		/// Gets all teams that are recorded in the database.
+		/// </summary>
+		/// <returns>List of team numbers.</returns>
+		public static List<int> GetTeams() {
+			List<int> teams = new List<int>();
+			List<double> doubleTeams = ExecuteQuery("SELECT DISTINCT TeamNumber FROM RawData ORDER BY TeamNumber ASC;", true);
+			foreach (double team in doubleTeams)
+				teams.Add((int)team);
+			return teams;
 		}
 	}
 }
