@@ -82,6 +82,7 @@
     <Compile Include="Commands\ReceiveFileCommand.cs" />
     <Compile Include="Models\BTClient.cs" />
     <Compile Include="Models\DBClient.cs" />
+    <Compile Include="Models\LineGraph.cs" />
     <Compile Include="Models\Scorer.cs" />
     <Compile Include="Models\Stat.cs" />
     <Compile Include="ViewModels\DataManagementViewModel.cs" />

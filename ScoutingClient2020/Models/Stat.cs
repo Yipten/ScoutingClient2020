@@ -5,11 +5,11 @@ namespace ScoutingClient2020.Models {
 	class Stat : INotifyPropertyChanged {
 		public string Display { get => _display; set { _display = value; OnPropertyChanged(nameof(Display)); } }
 
-		private double? _value = null;
-		private readonly string
-			_query,
-			_label,
-			_suffix;
+		private readonly string _query;
+		private readonly string _label;
+		private readonly string _suffix;
+		
+		private double? _value;
 		private string _display;
 
 		/// <summary>
@@ -19,13 +19,14 @@ namespace ScoutingClient2020.Models {
 		/// <param name="label">Text to display.</param>
 		/// <param name="suffix">Suffix of number (unit, percent, item name, etc.).</param>
 		public Stat(string query, string label = "", string suffix = "") {
+			_value = null;
 			_query = query;
 			_label = label;
 			_suffix = suffix;
 		}
 
 		/// <summary>
-		/// Updates value by executing query on the database.
+		/// Updates value by executing a query on the database.
 		/// </summary>
 		/// <param name="team">Team to get data for.</param>
 		public void Update(int team) {

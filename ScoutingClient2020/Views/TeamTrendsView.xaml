@@ -7,7 +7,22 @@
 	  mc:Ignorable="d" 
 	  d:DesignHeight="450" d:DesignWidth="800"
 	  Title="TeamTrendsView">
+	<Page.DataContext>
+		<vm:TeamTrendsViewModel />
+	</Page.DataContext>
 	<Grid>
-		
+		<StackPanel Orientation="Vertical">
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Select a team:" />
+				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" HorizontalAlignment="Left" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<StackPanel Orientation="Vertical">
+					<Canvas>
+						<!--<Polyline Points="{Binding TestLineGraph.Points}" StrokeDashArray="{Binding TestLineGraph.StrokeDashArray}" Stroke="{Binding TestLineGraph.Color}" />-->
+					</Canvas>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
 	</Grid>
 </Page>
