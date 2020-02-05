@@ -25,6 +25,7 @@ namespace ScoutingClient2020.Commands {
 
 		public void Execute(object parameter) {
 			_viewModel.Cancel();
+			_viewModel.Bluetooth.Yep();
 		}
 	}
 }

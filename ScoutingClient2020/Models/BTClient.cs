@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ScoutingClient2020.Models {
 	class BTClient : INotifyPropertyChanged {
@@ -13,6 +14,8 @@ namespace ScoutingClient2020.Models {
 		private readonly string _filePath;
 		private CancellationTokenSource _cancellationTokenSource;
 		private bool _isReceiving;
+		private int _count;
+		private int _times;
 
 		/// <summary>
 		/// Initializes a new instance of the BTClient class.
@@ -20,6 +23,10 @@ namespace ScoutingClient2020.Models {
 		public BTClient(string filePath) {
 			_filePath = filePath;
 			_isReceiving = false;
+			_count = 0;
+			_times = 0;
+
+			Nope();
 		}
 
 		/// <summary>
@@ -83,5 +90,57 @@ namespace ScoutingClient2020.Models {
 		}
 
 		#endregion
+
+		public void Yep() {
+			if (_count++ >= 5)
+				TellTheUserToStopBeingSoIndecisive(_count * _times);
+		}
+
+		public void Nope() {
+			_count = 0;
+			_times++;
+		}
+
+		public void TellTheUserToStopBeingSoIndecisive(int seeed) {
+			Random random = new Random(seeed);
+			string message;
+			switch (random.Next(0, 11)) {
+				case 0:
+					message = "stop being so indecisive";
+					break;
+				case 1:
+					message = "ouch, stop clicking, it hurts";
+					break;
+				case 2:
+					message = "quit it";
+					break;
+				case 3:
+					message = "water game";
+					break;
+				case 4:
+					message = "aoeu";
+					break;
+				case 5:
+					message = "how many times have you clicked that button?";
+					break;
+				case 6:
+					message = "zhhzzzhzhhzhhzhhhh";
+					break;
+				case 7:
+					message = "<Button Content=\"Cancel\" Command=\"{Binding CancelCommand}\" />";
+					break;
+				case 8:
+					message = "you sure like that cancel button, don't you?";
+					break;
+				case 9:
+					message = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+					break;
+				default:
+					message = "";
+					break;
+			}
+			MessageBox.Show(message, "why", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+			Nope();
+		}
 	}
 }
