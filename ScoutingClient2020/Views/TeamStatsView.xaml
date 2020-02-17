@@ -29,19 +29,19 @@
 				<StackPanel Orientation="Vertical">
 					<Label Content="Autonomous Averages" FontWeight="Bold" />
 					<Label Content="{Binding AvgAutoTotal.Display}" />
-					<Label Content="{Binding AvgAutoBottom.Display}" />
+					<Label Content="{Binding AvgAutoLower.Display}" />
 					<Label Content="{Binding AvgAutoOuter.Display}" />
 					<Label Content="{Binding AvgAutoInner.Display}" />
-					<Label Content="{Binding AvgAutoDrop.Display}" />
+					<Label Content="{Binding AvgAutoDropped.Display}" />
 					<Label Content="{Binding AvgAutoPoints.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
 					<Label Content="Teleop Averages" FontWeight="Bold" />
 					<Label Content="{Binding AvgTeleTotal.Display}" />
-					<Label Content="{Binding AvgTeleBottom.Display}" />
+					<Label Content="{Binding AvgTeleLower.Display}" />
 					<Label Content="{Binding AvgTeleOuter.Display}" />
 					<Label Content="{Binding AvgTeleInner.Display}" />
-					<Label Content="{Binding AvgTeleDrop.Display}" />
+					<Label Content="{Binding AvgTeleDropped.Display}" />
 					<Label Content="{Binding AvgTelePoints.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">

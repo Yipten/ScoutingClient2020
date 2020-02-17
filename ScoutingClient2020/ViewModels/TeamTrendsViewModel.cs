@@ -15,17 +15,17 @@ namespace ScoutingClient2020.ViewModels {
 		public LineGraph Fouls { get; set; }
 
 		public LineGraph AutoTotal { get; set; }
-		public LineGraph AutoBottom { get; set; }
+		public LineGraph AutoLower { get; set; }
 		public LineGraph AutoOuter { get; set; }
 		public LineGraph AutoInner { get; set; }
-		public LineGraph AutoDrop { get; set; }
+		public LineGraph AutoDropped { get; set; }
 		public LineGraph AutoPoints { get; set; }
 
 		public LineGraph TeleTotal { get; set; }
-		public LineGraph TeleBottom { get; set; }
+		public LineGraph TeleLower { get; set; }
 		public LineGraph TeleOuter { get; set; }
 		public LineGraph TeleInner { get; set; }
-		public LineGraph TeleDrop { get; set; }
+		public LineGraph TeleDropped { get; set; }
 		public LineGraph TelePoints { get; set; }
 
 		private readonly LineGraph[] _lineGraphs;
@@ -45,16 +45,16 @@ namespace ScoutingClient2020.ViewModels {
 				AllPoints,
 				Fouls,
 				AutoTotal,
-				AutoBottom,
+				AutoLower,
 				AutoOuter,
 				AutoInner,
-				AutoDrop,
+				AutoDropped,
 				AutoPoints,
 				TeleTotal,
-				TeleBottom,
+				TeleLower,
 				TeleOuter,
 				TeleInner,
-				TeleDrop,
+				TeleDropped,
 				TelePoints
 			};
 

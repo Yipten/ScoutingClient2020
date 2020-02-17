@@ -68,13 +68,19 @@ namespace ScoutingClient2020.Models {
 						"AutoLower, " +
 						"AutoOuter, " +
 						"AutoInner, " +
-						"AutoDrop, " +
+						"AutoMissed, " +
+						"AutoDroppedped, " +
+						"AutoCollected, " +
 						"TeleLower, " +
 						"TeleOuter, " +
 						"TeleInner, " +
-						"TeleDrop, " +
+						"TeleMissed, " +
+						"TeleDroppedped, " +
+						"TeleCollected, " +
 						"RotationControl, " +
 						"PositionControl, " +
+						"Zone, " +
+						"Park, " +
 						"ClimbAttempt, " +
 						"ClimbSuccess, " +
 						"ClimbBalanced, " +
@@ -85,6 +91,7 @@ namespace ScoutingClient2020.Models {
 						"DefenseAgainst, " +
 						"DefenseAgainstStrength, " +
 						"Fouls, " +
+						"Role, " +
 						"Breakdown, " +
 						"Comments" +
 					") " +
@@ -100,13 +107,19 @@ namespace ScoutingClient2020.Models {
 						"AutoLower, " +
 						"AutoOuter, " +
 						"AutoInner, " +
-						"AutoDrop, " +
+						"AutoMissed, " +
+						"AutoDroppedped, " +
+						"AutoCollected, " +
 						"TeleLower, " +
 						"TeleOuter, " +
 						"TeleInner, " +
-						"TeleDrop, " +
+						"TeleMissed, " +
+						"TeleDroppedped, " +
+						"TeleCollected, " +
 						"RotationControl, " +
 						"PositionControl, " +
+						"Zone, " +
+						"Park, " +
 						"ClimbAttempt, " +
 						"ClimbSuccess, " +
 						"ClimbBalanced, " +
@@ -117,8 +130,9 @@ namespace ScoutingClient2020.Models {
 						"DefenseAgainst, " +
 						"DefenseAgainstStrength, " +
 						"Fouls, " +
+						"Role, " +
 						"Breakdown, " +
-						"Comments " +
+						"Comments" +
 					"FROM db" + i + ".RawData;" +
 					// detach database when done
 					"DETACH DATABASE db" + i + ";",
