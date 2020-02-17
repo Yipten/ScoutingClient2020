@@ -25,7 +25,7 @@ namespace ScoutingClient2020.Commands {
 		}
 
 		public void Execute(object parameter) {
-			DBClient.Merge("2020_test");
+			_viewModel.Merge();
 			_viewModel.Bluetooth.Nope();
 		}
 	}

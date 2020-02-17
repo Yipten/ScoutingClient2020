@@ -24,7 +24,7 @@
 				<Label Content="" />
 			</StackPanel>
 			<Label Content="SQLite Databases" FontSize="20" />
-			<Button Content="{}" Command="{Binding MergeCommand}" />
+			<Button Content="Merge" Command="{Binding MergeCommand}" />
 		</StackPanel>
 	</Grid>
 </Page>

@@ -38,5 +38,12 @@ namespace ScoutingClient2020.ViewModels {
 		public void Cancel() {
 			Bluetooth.Cancel();
 		}
+
+		/// <summary>
+		/// Merges data from tablets into database on computer.
+		/// </summary>
+		public void Merge() {
+			DBClient.Merge("2020_test");
+		}
 	}
 }

@@ -30,7 +30,7 @@ namespace ScoutingClient2020.Models {
 				}
 			}
 			// connect to database
-			_connection = new SQLiteConnection("Data Source=" + _filePath + _fileName + "; Version=3");
+			_connection = new SQLiteConnection("Data Source=" + _filePath + _fileName + "; Version=3;");
 		}
 
 		/// <summary>
@@ -39,12 +39,12 @@ namespace ScoutingClient2020.Models {
 		/// <param name="databases">Array of database file names to merge from.</param>
 		public static void Merge(string fileName) {
 			string[] databases = {
-				fileName + "_Blue_1",
-				fileName + "_Blue_2",
-				fileName + "_Blue_3",
-				fileName + "_Red_1",
-				fileName + "_Red_2",
-				fileName + "_Red_3",
+				fileName + "_blue_1",
+				fileName + "_blue_2",
+				fileName + "_blue_3",
+				fileName + "_red_1",
+				fileName + "_red_2",
+				fileName + "_red_3",
 			};
 			for (int i = 0; i < databases.Length; i++) {
 				string pathTemp = _filePath + databases[i] + ".sqlite";
@@ -69,13 +69,13 @@ namespace ScoutingClient2020.Models {
 						"AutoOuter, " +
 						"AutoInner, " +
 						"AutoMissed, " +
-						"AutoDroppedped, " +
+						"AutoDropped, " +
 						"AutoCollected, " +
 						"TeleLower, " +
 						"TeleOuter, " +
 						"TeleInner, " +
 						"TeleMissed, " +
-						"TeleDroppedped, " +
+						"TeleDropped, " +
 						"TeleCollected, " +
 						"RotationControl, " +
 						"PositionControl, " +
@@ -108,13 +108,13 @@ namespace ScoutingClient2020.Models {
 						"AutoOuter, " +
 						"AutoInner, " +
 						"AutoMissed, " +
-						"AutoDroppedped, " +
+						"AutoDropped, " +
 						"AutoCollected, " +
 						"TeleLower, " +
 						"TeleOuter, " +
 						"TeleInner, " +
 						"TeleMissed, " +
-						"TeleDroppedped, " +
+						"TeleDropped, " +
 						"TeleCollected, " +
 						"RotationControl, " +
 						"PositionControl, " +
@@ -132,7 +132,7 @@ namespace ScoutingClient2020.Models {
 						"Fouls, " +
 						"Role, " +
 						"Breakdown, " +
-						"Comments" +
+						"Comments " +
 					"FROM db" + i + ".RawData;" +
 					// detach database when done
 					"DETACH DATABASE db" + i + ";",
@@ -164,10 +164,9 @@ namespace ScoutingClient2020.Models {
 			try {
 				if (read) {
 					SQLiteDataReader reader = command.ExecuteReader();
-					while (reader.Read()) {
+					while (reader.Read())
 						for (int i = 0; i < reader.FieldCount; i++)
 							dataCSV += reader[i] + ",";
-					}
 				} else
 					dataCSV = command.ExecuteNonQuery().ToString();
 			} catch (SQLiteException e) {
