@@ -15,7 +15,7 @@
 			<CheckBox Content="Leave Init Line" IsChecked="{Binding Scorer.InitLine, Mode=TwoWay}" />
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Autonomous Bottom Port" />
-				<TextBox Text="{Binding Scorer.AutoBottom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
+				<TextBox Text="{Binding Scorer.AutoLower, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Autonomous Outer Port" />
@@ -27,7 +27,7 @@
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Teleop Bottom Port" />
-				<TextBox Text="{Binding Scorer.TeleBottom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
+				<TextBox Text="{Binding Scorer.TeleLower, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Teleop Outer Port" />
@@ -43,6 +43,7 @@
 			<CheckBox Content="Climbed" IsChecked="{Binding Scorer.Climbed, Mode=TwoWay}" />
 			<CheckBox Content="Balanced Climb" IsChecked="{Binding Scorer.Balanced, Mode=TwoWay}" />
 			<Label Content="{Binding Scorer.ScoreStr}" />
+			<Button Content="Reset" Command="{Binding ResetScoreCommand}" />
 		</StackPanel>
 	</Grid>
 </Page>
