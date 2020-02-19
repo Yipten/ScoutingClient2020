@@ -9,7 +9,7 @@ namespace ScoutingClient2020.Models {
 		public Brush Color { get; set; }
 		public DoubleCollection StrokeDashArray { get; set; }
 
-		public const int GlobalWidth = 200;
+		public const int GlobalWidth = 300;
 		public const int GlobalHeight = 150;
 
 		private readonly string _query;
@@ -26,7 +26,7 @@ namespace ScoutingClient2020.Models {
 			_query = query;
 			Color = color;
 			StrokeDashArray = dashed ? new DoubleCollection(new double[] { 4 }) : null;
-			_points = new PointCollection();
+			Points = new PointCollection();
 		}
 
 		/// <summary>
@@ -34,6 +34,7 @@ namespace ScoutingClient2020.Models {
 		/// </summary>
 		/// <param name="team">Team to get data for.</param>
 		public void Update(int team) {
+			Points = new PointCollection();
 			try {
 				List<double> data = DBClient.ExecuteQuery(string.Format(_query, team), true);
 				double max = double.MinValue;
@@ -41,9 +42,9 @@ namespace ScoutingClient2020.Models {
 					if (d > max)
 						max = d;
 				for (int i = 0; i < data.Count; i++)
-					_points.Add(new Point(i * (GlobalHeight / (data.Count - 1)), GlobalHeight - data[i] * (GlobalHeight / max)));
+					Points.Add(new Point(i * (GlobalWidth / (data.Count - 1)), GlobalHeight - data[i] * (max == 0 ? 0 : GlobalHeight / max)));
 			} catch {
-				_points.Clear();
+				Points.Clear();
 			}
 		}
 
