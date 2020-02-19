@@ -1,5 +1,8 @@
-﻿using ScoutingClient2020.Models;
+﻿using ScoutingClient2020.Commands;
+using ScoutingClient2020.Models;
 using System.Collections.Generic;
+using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ScoutingClient2020.ViewModels {
 	class TeamTrendsViewModel {
@@ -27,6 +30,8 @@ namespace ScoutingClient2020.ViewModels {
 		public LineGraph TeleInner { get; set; }
 		public LineGraph TeleDropped { get; set; }
 		public LineGraph TelePoints { get; set; }
+
+		public ICommand UpdateTeamTrendsListCommand { get; private set; }
 
 		private readonly LineGraph[] _lineGraphs;
 		private int _selectedTeam;
@@ -58,12 +63,22 @@ namespace ScoutingClient2020.ViewModels {
 				TelePoints
 			};
 
-			UpdateLineGraphs();
+			Update();
 		}
 
-		public void UpdateLineGraphs() {
+		/// <summary>
+		/// Updates all data fields on the page.
+		/// </summary>
+		public void Update() {
 			foreach (LineGraph lineGraph in _lineGraphs)
 				lineGraph?.Update(_selectedTeam);
+		}
+
+		/// <summary>
+		/// Updates list of teams.
+		/// </summary>
+		public void UpdateTeamList() {
+			Teams = DBClient.GetTeams();
 		}
 	}
 }

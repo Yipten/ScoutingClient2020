@@ -1,5 +1,7 @@
-﻿using ScoutingClient2020.Models;
+﻿using ScoutingClient2020.Commands;
+using ScoutingClient2020.Models;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace ScoutingClient2020.ViewModels {
 	class TeamStatsViewModel {
@@ -109,15 +111,22 @@ namespace ScoutingClient2020.ViewModels {
 				MaxTelePoints
 			};
 
-			UpdateStats();
+			Update();
 		}
 
 		/// <summary>
 		/// Updates all data fields on the page.
 		/// </summary>
-		public void UpdateStats() {
+		public void Update() {
 			foreach (Stat stat in _stats)
 				stat.Update(_selectedTeam);
+		}
+
+		/// <summary>
+		/// Updates list of teams.
+		/// </summary>
+		public void UpdateTeamList() {
+			Teams = DBClient.GetTeams();
 		}
 	}
 }
