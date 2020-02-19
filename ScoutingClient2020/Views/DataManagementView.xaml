@@ -12,16 +12,10 @@
 	</Page.DataContext>
 	<Grid>
 		<StackPanel Orientation="Vertical">
-			<Label Content="Data Management" FontSize="24" />
 			<Label Content="Bluetooth" FontSize="20" />
 			<StackPanel Orientation="Horizontal">
 				<Button Content="Receive File" Command="{Binding ReceiveFileCommand}" />
 				<Button Content="Cancel" Command="{Binding CancelCommand}" />
-			</StackPanel>
-			<StackPanel Orientation="Horizontal">
-				<Label Content="Status: " />
-				<!--TODO: bind to BTClient property-->
-				<Label Content="" />
 			</StackPanel>
 			<Label Content="SQLite Databases" FontSize="20" />
 			<Button Content="Merge" Command="{Binding MergeCommand}" />
