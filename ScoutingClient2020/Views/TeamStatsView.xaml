@@ -14,49 +14,55 @@
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Select a team:" />
 				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" HorizontalAlignment="Left" />
+				<Button Content="Update List" Command="{Binding UpdateTeamStatsListCommand}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<StackPanel Orientation="Vertical">
-					<Label Content="Overall Averages" FontWeight="Bold" />
-					<Label Content="{Binding AvgAllTotal.Display}" />
-					<Label Content="{Binding AvgAllBottom.Display}" />
-					<Label Content="{Binding AvgAllOuter.Display}" />
-					<Label Content="{Binding AvgAllInner.Display}" />
-					<Label Content="{Binding AvgAllDrop.Display}" />
-					<Label Content="{Binding AvgAllPoints.Display}" />
-					<Label Content="{Binding AvgFouls.Display}" />
+					<Label Content="Lower Port" FontWeight="Bold" />
+					<Label Content="{Binding LowerAvgAuto.Display}" />
+					<Label Content="{Binding LowerAvgTele.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
-					<Label Content="Autonomous Averages" FontWeight="Bold" />
-					<Label Content="{Binding AvgAutoTotal.Display}" />
-					<Label Content="{Binding AvgAutoLower.Display}" />
-					<Label Content="{Binding AvgAutoOuter.Display}" />
-					<Label Content="{Binding AvgAutoInner.Display}" />
-					<Label Content="{Binding AvgAutoDropped.Display}" />
-					<Label Content="{Binding AvgAutoPoints.Display}" />
+					<Label Content="Outer Port" FontWeight="Bold" />
+					<Label Content="{Binding OuterAvgAuto.Display}" />
+					<Label Content="{Binding OuterAvgTele.Display}" />
+				</StackPanel>
+				<StackPanel Orientation="Vertical" >
+					<Label Content="Inner Port" FontWeight="Bold" />
+					<Label Content="{Binding InnerAvgAuto.Display}" />
+					<Label Content="{Binding InnerAvgTele.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
-					<Label Content="Teleop Averages" FontWeight="Bold" />
-					<Label Content="{Binding AvgTeleTotal.Display}" />
-					<Label Content="{Binding AvgTeleLower.Display}" />
-					<Label Content="{Binding AvgTeleOuter.Display}" />
-					<Label Content="{Binding AvgTeleInner.Display}" />
-					<Label Content="{Binding AvgTeleDropped.Display}" />
-					<Label Content="{Binding AvgTelePoints.Display}" />
+					<Label Content="Total of All Ports" FontWeight="Bold" />
+					<Label Content="{Binding TotalAvgAuto.Display}" />
+					<Label Content="{Binding TotalAvgTele.Display}" />
+					<Label Content="{Binding TotalPercentAuto.Display}" />
+					<Label Content="{Binding TotalPercentTele.Display}" />
+					<Label Content="{Binding TotalMaxAuto.Display}" />
+					<Label Content="{Binding TotalMaxTele.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
-					<Label Content="Maximums" FontWeight="Bold" />
-					<Label Content="{Binding MaxAll.Display}" />
-					<Label Content="{Binding MaxAllPoints.Display}" />
-					<Label Content="{Binding MaxAuto.Display}" />
-					<Label Content="{Binding MaxAutoPoints.Display}" />
-					<Label Content="{Binding MaxTele.Display}" />
-					<Label Content="{Binding MaxTelePoints.Display}" />
+					<Label Content="Missed" FontWeight="Bold" />
+					<Label Content="{Binding MissedAvgAuto.Display}" />
+					<Label Content="{Binding MissedAvgTele.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
-					<Label Content="Percents" FontWeight="Bold" />
-					<Label Content="{Binding PercentInitLine.Display}" />
-					<Label Content="{Binding PercentClimb.Display}" />
+					<Label Content="Dropped" FontWeight="Bold" />
+					<Label Content="{Binding DroppedAvgAuto.Display}" />
+					<Label Content="{Binding DroppedAvgTele.Display}" />
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Label Content="Points" FontWeight="Bold" />
+					<Label Content="{Binding PointsAvgAuto.Display}" />
+					<Label Content="{Binding PointsAvgTele.Display}" />
+					<Label Content="{Binding PointsMaxAuto.Display}" />
+					<Label Content="{Binding PointsMaxTele.Display}" />
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Label Content="An Interesting Title" FontWeight="Bold" />
+					<Label Content="{Binding InitLinePercent.Display}" />
+					<Label Content="{Binding ClimbPercent.Display}" />
+					<Label Content="{Binding FoulsAvg.Display}" />
 				</StackPanel>
 			</StackPanel>
 		</StackPanel>

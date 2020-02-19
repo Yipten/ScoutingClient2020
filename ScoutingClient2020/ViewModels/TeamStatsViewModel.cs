@@ -6,39 +6,41 @@ using System.Windows.Input;
 namespace ScoutingClient2020.ViewModels {
 	class TeamStatsViewModel {
 		public List<int> Teams { get; set; }
-		public int SelectedTeam { get => _selectedTeam; set { _selectedTeam = value; UpdateStats(); } }
+		public int SelectedTeam { get => _selectedTeam; set { _selectedTeam = value; Update(); } }
 
-		public Stat AvgAllTotal { get; set; }
-		public Stat AvgAllBottom { get; set; }
-		public Stat AvgAllOuter { get; set; }
-		public Stat AvgAllInner { get; set; }
-		public Stat AvgAllDrop { get; set; }
-		public Stat AvgAllPoints { get; set; }
-		public Stat AvgFouls { get; set; }
+		public Stat LowerAvgAuto { get; set; }
+		public Stat LowerAvgTele { get; set; }
 
-		public Stat AvgAutoTotal { get; set; }
-		public Stat AvgAutoLower { get; set; }
-		public Stat AvgAutoOuter { get; set; }
-		public Stat AvgAutoInner { get; set; }
-		public Stat AvgAutoDropped { get; set; }
-		public Stat AvgAutoPoints { get; set; }
+		public Stat OuterAvgAuto { get; set; }
+		public Stat OuterAvgTele { get; set; }
 
-		public Stat AvgTeleTotal { get; set; }
-		public Stat AvgTeleLower { get; set; }
-		public Stat AvgTeleOuter { get; set; }
-		public Stat AvgTeleInner { get; set; }
-		public Stat AvgTeleDropped { get; set; }
-		public Stat AvgTelePoints { get; set; }
+		public Stat InnerAvgAuto { get; set; }
+		public Stat InnerAvgTele { get; set; }
 
-		public Stat PercentInitLine { get; set; }
-		public Stat PercentClimb { get; set; }
+		public Stat TotalAvgAuto { get; set; }
+		public Stat TotalAvgTele { get; set; }
+		public Stat TotalPercentAuto { get; set; }
+		public Stat TotalPercentTele { get; set; }
+		public Stat TotalMaxAuto { get; set; }
+		public Stat TotalMaxTele { get; set; }
 
-		public Stat MaxAll { get; set; }
-		public Stat MaxAllPoints { get; set; }
-		public Stat MaxAuto { get; set; }
-		public Stat MaxAutoPoints { get; set; }
-		public Stat MaxTele { get; set; }
-		public Stat MaxTelePoints { get; set; }
+		public Stat MissedAvgAuto { get; set; }
+		public Stat MissedAvgTele { get; set; }
+
+		public Stat DroppedAvgAuto { get; set; }
+		public Stat DroppedAvgTele { get; set; }
+
+		public Stat PointsAvgAuto { get; set; }
+		public Stat PointsAvgTele { get; set; }
+		public Stat PointsMaxAuto { get; set; }
+		public Stat PointsMaxTele { get; set; }
+
+		public Stat FoulsAvg { get; set; }
+
+		public Stat InitLinePercent { get; set; }
+		public Stat ClimbPercent { get; set; }
+
+		public ICommand UpdateTeamStatsListCommand { get; private set; }
 
 		private readonly Stat[] _stats;
 		private int _selectedTeam;
@@ -49,66 +51,64 @@ namespace ScoutingClient2020.ViewModels {
 		public TeamStatsViewModel() {
 			Teams = DBClient.GetTeams();
 
-			AvgAllTotal = new Stat("SELECT AVG(AutoLower + AutoOuter + AutoInner + TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Total");
-			AvgAllBottom = new Stat("SELECT AVG(AutoLower + TeleLower) FROM RawData WHERE TeamNumber = {0};", "Bottom Port");
-			AvgAllOuter = new Stat("SELECT AVG(AutoOuter + TeleOuter) FROM RawData WHERE TeamNumber = {0};", "Outer Port");
-			AvgAllInner = new Stat("SELECT AVG(AutoInner + TeleOuter) FROM RawData WHERE TeamNumber = {0};", "Inner Port");
-			AvgAllDrop = new Stat("SELECT AVG(AutoDropped) FROM RawData WHERE TeamNumber = {0};", "Drop");
-			AvgAllPoints = new Stat("SELECT AVG(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6 + TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Points");
-			AvgFouls = new Stat("SELECT AVG(Fouls) FROM RawData WHERE TeamNumber = {0};", "Fouls");
+			LowerAvgAuto = new Stat("SELECT AVG(AutoLower) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			LowerAvgTele = new Stat("SELECT AVG(TeleLower) FROM RawData WHERE TeamNumber = {0};", "Teleop");
 
-			AvgAutoTotal = new Stat("SELECT AVG(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Total");
-			AvgAutoLower = new Stat("SELECT AVG(AutoLower) FROM RawData WHERE TeamNumber = {0};", "Bottom Port");
-			AvgAutoOuter = new Stat("SELECT AVG(AutoOuter) FROM RawData WHERE TeamNumber = {0};", "Outer Port");
-			AvgAutoInner = new Stat("SELECT AVG(AutoInner) FROM RawData WHERE TeamNumber = {0};", "Inner Port");
-			AvgAutoDropped = new Stat("SELECT AVG(AutoDropped) FROM RawData WHERE TeamNumber = {0};", "Dropped");
-			AvgAutoPoints = new Stat("SELECT AVG(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Points");
+			OuterAvgAuto = new Stat("SELECT AVG(AutoOuter) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			OuterAvgTele = new Stat("SELECT AVG(TeleOuter) FROM RawData WHERE TeamNumber = {0};", "Teleop");
 
-			AvgTeleTotal = new Stat("SELECT AVG(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Total");
-			AvgTeleLower = new Stat("SELECT AVG(TeleLower) FROM RawData WHERE TeamNumber = {0};", "Bottom Port");
-			AvgTeleOuter = new Stat("SELECT AVG(TeleOuter) FROM RawData WHERE TeamNumber = {0};", "Outer Port");
-			AvgTeleInner = new Stat("SELECT AVG(TeleInner) FROM RawData WHERE TeamNumber = {0};", "Inner Port");
-			AvgTeleDropped = new Stat("SELECT AVG(TeleDropped) FROM RawData WHERE TeamNumber = {0};", "Dropped");
-			AvgTelePoints = new Stat("SELECT AVG(TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Points");
+			InnerAvgAuto = new Stat("SELECT AVG(AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			InnerAvgTele = new Stat("SELECT AVG(TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop");
 
-			PercentInitLine = new Stat("SELECT 100.0 * SUM(InitLine) / COUNT() FROM RawData WHERE TeamNumber = {0};", "Leave Init Line", "%");
-			PercentClimb = new Stat("SELECT 100.0 * SUM(ClimbSuccess) / COUNT() FROM RawData WHERE TeamNumber = {0} AND ClimbAttempt = 1;", "Climb Success", "%");
+			TotalAvgAuto = new Stat("SELECT AVG(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			TotalAvgTele = new Stat("SELECT AVG(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop");
+			TotalPercentAuto = new Stat("SELECT 100.0 * (SUM(AutoLower + AutoOuter + AutoInner) - SUM(AutoMissed)) / SUM(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto Accuracy", "%");
+			TotalPercentTele = new Stat("SELECT 100.0 * (SUM(TeleLower + TeleOuter + TeleInner) - SUM(TeleMissed)) / SUM(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop Accuracy", "%");
+			TotalMaxAuto = new Stat("SELECT MAX(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto Max");
+			TotalMaxTele = new Stat("SELECT MAX(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop Max");
 
-			MaxAll = new Stat("SELECT MAX(AutoLower + AutoOuter + AutoInner + TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Overall");
-			MaxAllPoints = new Stat("SELECT MAX(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6 + TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Overall Points");
-			MaxAuto = new Stat("SELECT MAX(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Autonomous");
-			MaxAutoPoints = new Stat("SELECT MAX(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Autonomous Points");
-			MaxTele = new Stat("SELECT MAX(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop");
-			MaxTelePoints = new Stat("SELECT MAX(TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Teleop Points");
+			MissedAvgAuto = new Stat("SELECT AVG(AutoMissed) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			MissedAvgTele = new Stat("SELECT AVG(TeleMissed) FROM RawData WHERE TeamNumber = {0};", "Teleop");
+
+			DroppedAvgAuto = new Stat("SELECT AVG(AutoDropped) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			DroppedAvgTele = new Stat("SELECT AVG(TeleDropped) FROM RawData WHERE TeamNumber = {0};", "Teleop");
+
+			PointsAvgAuto = new Stat("SELECT AVG(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Auto Avg");
+			PointsAvgTele = new Stat("SELECT AVG(TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Teleop Avg");
+			PointsMaxAuto = new Stat("SELECT MAX(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Auto Max");
+			PointsMaxTele = new Stat("SELECT MAX(TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Teleop Max");
+
+			FoulsAvg = new Stat("SELECT AVG(Fouls) FROM RawData WHERE TeamNumber = {0};", "Fouls");
+
+			InitLinePercent = new Stat("SELECT 100.0 * SUM(InitLine) / COUNT() FROM RawData WHERE TeamNumber = {0};", "Leave Init Line", "%");
+			ClimbPercent = new Stat("SELECT 100.0 * SUM(ClimbSuccess) / COUNT() FROM RawData WHERE TeamNumber = {0} AND ClimbAttempt = 1;", "Climb Success", "%");
+
+			UpdateTeamStatsListCommand = new UpdateTeamStatsListCommand(this);
 
 			_stats = new Stat[] {
-				AvgAllTotal,
-				AvgAllBottom,
-				AvgAllOuter,
-				AvgAllInner,
-				AvgAllDrop,
-				AvgAllPoints,
-				AvgAutoTotal,
-				AvgAutoLower,
-				AvgAutoOuter,
-				AvgAutoInner,
-				AvgAutoDropped,
-				AvgAutoPoints,
-				AvgTeleTotal,
-				AvgTeleLower,
-				AvgTeleOuter,
-				AvgTeleInner,
-				AvgTeleDropped,
-				AvgTelePoints,
-				AvgFouls,
-				PercentInitLine,
-				PercentClimb,
-				MaxAll,
-				MaxAllPoints,
-				MaxAuto,
-				MaxAutoPoints,
-				MaxTele,
-				MaxTelePoints
+				LowerAvgAuto,
+				LowerAvgTele,
+				OuterAvgAuto,
+				OuterAvgTele,
+				InnerAvgAuto,
+				InnerAvgTele,
+				TotalAvgAuto,
+				TotalAvgTele,
+				TotalPercentAuto,
+				TotalPercentTele,
+				TotalMaxAuto,
+				TotalMaxTele,
+				MissedAvgAuto,
+				MissedAvgTele,
+				DroppedAvgAuto,
+				DroppedAvgTele,
+				PointsAvgAuto,
+				PointsAvgTele,
+				PointsMaxAuto,
+				PointsMaxTele,
+				FoulsAvg,
+				InitLinePercent,
+				ClimbPercent
 			};
 
 			Update();

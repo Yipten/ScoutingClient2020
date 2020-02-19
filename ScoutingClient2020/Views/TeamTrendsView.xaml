@@ -15,11 +15,13 @@
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Select a team:" />
 				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" HorizontalAlignment="Left" />
+				<Button Content="Update List" Command="{Binding UpdateTeamTrendsListCommand}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<StackPanel Orientation="Vertical">
-					<Canvas>
-						<!--<Polyline Points="{Binding TestLineGraph.Points}" StrokeDashArray="{Binding TestLineGraph.StrokeDashArray}" Stroke="{Binding TestLineGraph.Color}" />-->
+					<Canvas Width="300" Height="150">
+						<Polyline Points="{Binding AllTotal.Points}" StrokeDashArray="{Binding AllTotal.StrokeDashArray}" Stroke="{Binding AllTotal.Color}" />
+						<Polyline Points="{Binding AllLower.Points}" StrokeDashArray="{Binding AllLower.StrokeDashArray}" Stroke="{Binding AllLower.Color}" />
 					</Canvas>
 				</StackPanel>
 			</StackPanel>

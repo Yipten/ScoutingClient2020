@@ -14,7 +14,7 @@
 		<StackPanel Orientation="Vertical">
 			<CheckBox Content="Leave Init Line" IsChecked="{Binding Scorer.InitLine, Mode=TwoWay}" />
 			<StackPanel Orientation="Horizontal">
-				<Label Content="Autonomous Bottom Port" />
+				<Label Content="Autonomous Lower Port" />
 				<TextBox Text="{Binding Scorer.AutoLower, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
@@ -26,7 +26,7 @@
 				<TextBox Text="{Binding Scorer.AutoInner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
-				<Label Content="Teleop Bottom Port" />
+				<Label Content="Teleop Lower Port" />
 				<TextBox Text="{Binding Scorer.TeleLower, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">

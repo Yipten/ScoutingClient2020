@@ -7,10 +7,10 @@ using System.Windows.Media;
 namespace ScoutingClient2020.ViewModels {
 	class TeamTrendsViewModel {
 		public List<int> Teams { get; set; }
-		public int SelectedTeam { get => _selectedTeam; set { _selectedTeam = value; UpdateLineGraphs(); } }
+		public int SelectedTeam { get => _selectedTeam; set { _selectedTeam = value; Update(); } }
 
 		public LineGraph AllTotal { get; set; }
-		public LineGraph AllBottom { get; set; }
+		public LineGraph AllLower { get; set; }
 		public LineGraph AllOuter { get; set; }
 		public LineGraph AllInner { get; set; }
 		public LineGraph AllDrop { get; set; }
@@ -40,10 +40,14 @@ namespace ScoutingClient2020.ViewModels {
 			Teams = DBClient.GetTeams();
 
 			// TODO: initialize line graphs here
+			AllTotal = new LineGraph("SELECT AutoLower + AutoOuter + AutoInner + TeleLower + TeleOuter + TeleInner FROM RawData WHERE TeamNumber = {0};", Brushes.Red, false);
+			AllLower = new LineGraph("SELECT AutoLower + TeleLower FROM RawData WHERE TeamNumber = {0};", Brushes.Green, true);
+
+			UpdateTeamTrendsListCommand = new UpdateTeamTrendsListCommand(this);
 
 			_lineGraphs = new LineGraph[] {
 				AllTotal,
-				AllBottom,
+				AllLower,
 				AllOuter,
 				AllInner,
 				AllDrop,
