@@ -52,88 +52,97 @@ namespace ScoutingClient2020.Models {
 				if (!File.Exists(pathTemp))
 					continue;
 				// query to merge data into database on computer
+				//ExecuteQuery(
+				//	// attach database to merge data from
+				//	"ATTACH DATABASE '" + pathTemp + "' AS db" + i + ";" +
+				//	// insert data into master database
+				//	"INSERT INTO RawData(" +
+				//		"ScoutName, " +
+				//		"MatchNumber, " +
+				//		"ReplayMatch, " +
+				//		"TeamNumber, " +
+				//		"AllianceColor, " +
+				//		"StartPosition, " +
+				//		"Preloaded, " +
+				//		"InitLine, " +
+				//		"AutoLower, " +
+				//		"AutoOuter, " +
+				//		"AutoInner, " +
+				//		"AutoMissed, " +
+				//		"AutoDropped, " +
+				//		"AutoCollected, " +
+				//		"TeleLower, " +
+				//		"TeleOuter, " +
+				//		"TeleInner, " +
+				//		"TeleMissed, " +
+				//		"TeleDropped, " +
+				//		"TeleCollected, " +
+				//		"RotationControl, " +
+				//		"PositionControl, " +
+				//		"Zone, " +
+				//		"Park, " +
+				//		"ClimbAttempt, " +
+				//		"ClimbSuccess, " +
+				//		"ClimbBalanced, " +
+				//		"HadAssistance, " +
+				//		"AssistedOthers, " +
+				//		"DefensePlay, " +
+				//		"DefensePlayStrength, " +
+				//		"DefenseAgainst, " +
+				//		"DefenseAgainstStrength, " +
+				//		"Fouls, " +
+				//		"Role, " +
+				//		"Breakdown, " +
+				//		"Comments" +
+				//	") " +
+				//	"SELECT " +
+				//		"ScoutName, " +
+				//		"MatchNumber, " +
+				//		"ReplayMatch, " +
+				//		"TeamNumber, " +
+				//		"AllianceColor, " +
+				//		"StartPosition, " +
+				//		"Preloaded, " +
+				//		"InitLine, " +
+				//		"AutoLower, " +
+				//		"AutoOuter, " +
+				//		"AutoInner, " +
+				//		"AutoMissed, " +
+				//		"AutoDropped, " +
+				//		"AutoCollected, " +
+				//		"TeleLower, " +
+				//		"TeleOuter, " +
+				//		"TeleInner, " +
+				//		"TeleMissed, " +
+				//		"TeleDropped, " +
+				//		"TeleCollected, " +
+				//		"RotationControl, " +
+				//		"PositionControl, " +
+				//		"Zone, " +
+				//		"Park, " +
+				//		"ClimbAttempt, " +
+				//		"ClimbSuccess, " +
+				//		"ClimbBalanced, " +
+				//		"HadAssistance, " +
+				//		"AssistedOthers, " +
+				//		"DefensePlay, " +
+				//		"DefensePlayStrength, " +
+				//		"DefenseAgainst, " +
+				//		"DefenseAgainstStrength, " +
+				//		"Fouls, " +
+				//		"Role, " +
+				//		"Breakdown, " +
+				//		"Comments " +
+				//	"FROM db" + i + ".RawData;" +
+				//	// detach database when done
+				//	"DETACH DATABASE db" + i + ";",
+				//	false
+				//);
 				ExecuteQuery(
 					// attach database to merge data from
 					"ATTACH DATABASE '" + pathTemp + "' AS db" + i + ";" +
 					// insert data into master database
-					"INSERT INTO RawData(" +
-						"ScoutName, " +
-						"MatchNumber, " +
-						"ReplayMatch, " +
-						"TeamNumber, " +
-						"AllianceColor, " +
-						"StartPosition, " +
-						"Preloaded, " +
-						"InitLine, " +
-						"AutoLower, " +
-						"AutoOuter, " +
-						"AutoInner, " +
-						"AutoMissed, " +
-						"AutoDropped, " +
-						"AutoCollected, " +
-						"TeleLower, " +
-						"TeleOuter, " +
-						"TeleInner, " +
-						"TeleMissed, " +
-						"TeleDropped, " +
-						"TeleCollected, " +
-						"RotationControl, " +
-						"PositionControl, " +
-						"Zone, " +
-						"Park, " +
-						"ClimbAttempt, " +
-						"ClimbSuccess, " +
-						"ClimbBalanced, " +
-						"HadAssistance, " +
-						"AssistedOthers, " +
-						"DefensePlay, " +
-						"DefensePlayStrength, " +
-						"DefenseAgainst, " +
-						"DefenseAgainstStrength, " +
-						"Fouls, " +
-						"Role, " +
-						"Breakdown, " +
-						"Comments" +
-					") " +
-					"SELECT " +
-						"ScoutName, " +
-						"MatchNumber, " +
-						"ReplayMatch, " +
-						"TeamNumber, " +
-						"AllianceColor, " +
-						"StartPosition, " +
-						"Preloaded, " +
-						"InitLine, " +
-						"AutoLower, " +
-						"AutoOuter, " +
-						"AutoInner, " +
-						"AutoMissed, " +
-						"AutoDropped, " +
-						"AutoCollected, " +
-						"TeleLower, " +
-						"TeleOuter, " +
-						"TeleInner, " +
-						"TeleMissed, " +
-						"TeleDropped, " +
-						"TeleCollected, " +
-						"RotationControl, " +
-						"PositionControl, " +
-						"Zone, " +
-						"Park, " +
-						"ClimbAttempt, " +
-						"ClimbSuccess, " +
-						"ClimbBalanced, " +
-						"HadAssistance, " +
-						"AssistedOthers, " +
-						"DefensePlay, " +
-						"DefensePlayStrength, " +
-						"DefenseAgainst, " +
-						"DefenseAgainstStrength, " +
-						"Fouls, " +
-						"Role, " +
-						"Breakdown, " +
-						"Comments " +
-					"FROM db" + i + ".RawData;" +
+					"INSERT INTO RawData SELECT * FROM db" + i + ".RawData WHERE NOT EXISTS(SELECT * FROM RawData WHERE RawData.ID = db" + i + ".RawData.ID);" +
 					// detach database when done
 					"DETACH DATABASE db" + i + ";",
 					false
