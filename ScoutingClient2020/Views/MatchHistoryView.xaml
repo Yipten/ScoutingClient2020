@@ -7,7 +7,25 @@
 	  mc:Ignorable="d" 
 	  d:DesignHeight="450" d:DesignWidth="800"
 	  Title="MatchHistoryView">
+	<Page.DataContext>
+		<vm:MatchHistoryViewModel />
+	</Page.DataContext>
 	<Grid>
-		
+		<StackPanel Orientation="Vertical">
+			<StackPanel Orientation="Horizontal">
+				<Label Content="Select a match:" />
+				<TextBox Text="{Binding SelectedMatch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource SmallNumber}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<StackPanel Orientation="Vertical">
+					<Label Content="Blue Alliance" FontWeight="Bold" Foreground="Blue" />
+					<!--TODO: match details-->
+				</StackPanel>
+				<StackPanel Orientation="Vertical">
+					<Label Content="Red Alliance" FontWeight="Bold" Foreground="Red" />
+					<!--TODO: match details-->
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
 	</Grid>
 </Page>
