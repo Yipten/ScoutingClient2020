@@ -43,7 +43,7 @@ namespace ScoutingClient2020.Models {
 		/// </summary>
 		/// <returns>Stat.Value as a string.</returns>
 		public override string ToString() {
-			return _label + ": " + (_value.HasValue ? _value + _suffix : "null");
+			return (string.IsNullOrWhiteSpace(_label) ? null : _label + ": ") + (_value.HasValue ? _value + _suffix : "null");
 		}
 
 		#region INotifyPropertyChanged Members
