@@ -27,6 +27,8 @@ namespace ScoutingClient2020.Models {
 				};
 				if (openFileDialog.ShowDialog() == true) {
 					_fileName = openFileDialog.SafeFileName;
+					string tempFilePath = openFileDialog.FileName;
+					_filePath = tempFilePath.Substring(0, tempFilePath.IndexOf(_fileName));
 				}
 			}
 			// connect to database
@@ -166,6 +168,8 @@ namespace ScoutingClient2020.Models {
 		/// <param name="read">True if results are desired. False if not.</param>
 		/// <returns>List of data retrieved from the database.</returns>
 		public static List<double> ExecuteQuery(string query, bool read) {
+			if (_connection == null)
+				return new List<double>();
 			_connection.Open();
 			SQLiteCommand command = new SQLiteCommand(query, _connection);
 			// comma-separated form of data
