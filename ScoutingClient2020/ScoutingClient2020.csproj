@@ -88,6 +88,7 @@
     <Compile Include="Models\LineGraph.cs" />
     <Compile Include="Models\Scorer.cs" />
     <Compile Include="Models\Stat.cs" />
+    <Compile Include="Models\TeamList.cs" />
     <Compile Include="ViewModels\DataManagementViewModel.cs" />
     <Compile Include="ViewModels\MatchHistoryViewModel.cs" />
     <Compile Include="ViewModels\MatchPredictionsViewModel.cs" />

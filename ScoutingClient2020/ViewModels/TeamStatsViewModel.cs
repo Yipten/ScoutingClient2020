@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace ScoutingClient2020.ViewModels {
 	class TeamStatsViewModel {
-		public List<int> Teams { get; set; }
+		public TeamList TeamList { get; set; }
 		public int SelectedTeam { get => _selectedTeam; set { _selectedTeam = value; Update(); } }
 
 		public Stat LowerAvgAuto { get; set; }
@@ -49,8 +49,6 @@ namespace ScoutingClient2020.ViewModels {
 		/// Initializes a new instance of the TeamStatsViewModel class.
 		/// </summary>
 		public TeamStatsViewModel() {
-			Teams = DBClient.GetTeams();
-
 			LowerAvgAuto = new Stat("SELECT AVG(AutoLower) FROM RawData WHERE TeamNumber = {0};", "Auto");
 			LowerAvgTele = new Stat("SELECT AVG(TeleLower) FROM RawData WHERE TeamNumber = {0};", "Teleop");
 
@@ -83,6 +81,8 @@ namespace ScoutingClient2020.ViewModels {
 			InitLinePercent = new Stat("SELECT 100.0 * SUM(InitLine) / COUNT() FROM RawData WHERE TeamNumber = {0};", "Leave Init Line", "%");
 			ClimbPercent = new Stat("SELECT 100.0 * SUM(ClimbSuccess) / COUNT() FROM RawData WHERE TeamNumber = {0} AND ClimbAttempt = 1;", "Climb Success", "%");
 
+			TeamList = new TeamList();
+
 			UpdateTeamStatsListCommand = new UpdateTeamStatsListCommand(this);
 
 			_stats = new Stat[] {
@@ -111,6 +111,7 @@ namespace ScoutingClient2020.ViewModels {
 				ClimbPercent
 			};
 
+			TeamList.Update();
 			Update();
 		}
 
@@ -126,7 +127,7 @@ namespace ScoutingClient2020.ViewModels {
 		/// Updates list of teams.
 		/// </summary>
 		public void UpdateTeamList() {
-			Teams = DBClient.GetTeams();
+			TeamList.Update();
 		}
 	}
 }

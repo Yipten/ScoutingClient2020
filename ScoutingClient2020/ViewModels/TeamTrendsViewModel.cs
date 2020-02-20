@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 namespace ScoutingClient2020.ViewModels {
 	class TeamTrendsViewModel {
-		public List<int> Teams { get; set; }
+		public TeamList TeamList { get; set; }
 		public int SelectedTeam { get => _selectedTeam; set { _selectedTeam = value; Update(); } }
 
 		public LineGraph AllTotal { get; set; }
@@ -37,11 +37,10 @@ namespace ScoutingClient2020.ViewModels {
 		private int _selectedTeam;
 
 		public TeamTrendsViewModel() {
-			Teams = DBClient.GetTeams();
-
-			// TODO: initialize line graphs here
 			AllTotal = new LineGraph("SELECT AutoLower + AutoOuter + AutoInner + TeleLower + TeleOuter + TeleInner FROM RawData WHERE TeamNumber = {0};", Brushes.Red, false);
 			AllLower = new LineGraph("SELECT AutoLower + TeleLower FROM RawData WHERE TeamNumber = {0};", Brushes.Green, true);
+			
+			TeamList = new TeamList();
 
 			UpdateTeamTrendsListCommand = new UpdateTeamTrendsListCommand(this);
 
@@ -67,6 +66,7 @@ namespace ScoutingClient2020.ViewModels {
 				TelePoints
 			};
 
+			TeamList.Update();
 			Update();
 		}
 
@@ -82,7 +82,7 @@ namespace ScoutingClient2020.ViewModels {
 		/// Updates list of teams.
 		/// </summary>
 		public void UpdateTeamList() {
-			Teams = DBClient.GetTeams();
+			TeamList.Update();
 		}
 	}
 }

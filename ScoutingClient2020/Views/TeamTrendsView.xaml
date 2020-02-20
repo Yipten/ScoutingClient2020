@@ -14,7 +14,7 @@
 		<StackPanel Orientation="Vertical">
 			<StackPanel Orientation="Horizontal">
 				<Label Content="Select a team:" />
-				<ComboBox ItemsSource="{Binding Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" HorizontalAlignment="Left" />
+				<ComboBox ItemsSource="{Binding TeamList.Teams}" SelectedItem="{Binding SelectedTeam}" SelectedIndex="0" HorizontalAlignment="Left" />
 				<Button Content="Update List" Command="{Binding UpdateTeamTrendsListCommand}" />
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
