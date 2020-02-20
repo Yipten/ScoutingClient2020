@@ -31,6 +31,9 @@ namespace ScoutingClient2020.Models {
 		private int _score;
 		private string _scoreStr;
 
+		/// <summary>
+		/// Initializes a new instance of the Scorer class.
+		/// </summary>
 		public Scorer() {
 			InitLine = false;
 			AutoLower = 0;
@@ -47,7 +50,7 @@ namespace ScoutingClient2020.Models {
 		}
 
 		/// <summary>
-		/// 
+		/// Updates score by adding all the items together.
 		/// </summary>
 		public void UpdateScore() {
 			_score =
@@ -66,6 +69,9 @@ namespace ScoutingClient2020.Models {
 			ScoreStr = "Score: " + _score.ToString();
 		}
 
+		/// <summary>
+		/// Resets all UI elements and sets score to zero.
+		/// </summary>
 		public void ResetScore() {
 			InitLine = false;
 			AutoLower = 0;
