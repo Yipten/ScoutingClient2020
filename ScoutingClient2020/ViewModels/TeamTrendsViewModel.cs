@@ -1,6 +1,5 @@
 ﻿using ScoutingClient2020.Commands;
 using ScoutingClient2020.Models;
-using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -37,9 +36,9 @@ namespace ScoutingClient2020.ViewModels {
 		private int _selectedTeam;
 
 		public TeamTrendsViewModel() {
-			AllTotal = new LineGraph("SELECT AutoLower + AutoOuter + AutoInner + TeleLower + TeleOuter + TeleInner FROM RawData WHERE TeamNumber = {0};", Brushes.Red, false);
-			AllLower = new LineGraph("SELECT AutoLower + TeleLower FROM RawData WHERE TeamNumber = {0};", Brushes.Green, true);
-			
+			AllTotal = new LineGraph("SELECT AutoLow + AutoHigh + TeleLow + TeleHigh FROM RawData WHERE TeamNumber = {0};", Brushes.Red, false);
+			AllLower = new LineGraph("SELECT AutoLow + TeleLow FROM RawData WHERE TeamNumber = {0};", Brushes.Green, true);
+
 			TeamList = new TeamList();
 
 			UpdateTeamTrendsListCommand = new UpdateTeamTrendsListCommand(this);

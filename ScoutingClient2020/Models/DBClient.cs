@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -170,7 +171,8 @@ namespace ScoutingClient2020.Models {
 		public static List<double> ExecuteQuery(string query, bool read) {
 			if (_connection == null)
 				return new List<double>();
-			_connection.Open();
+			//if (_connection.State == ConnectionState.Closed)
+				_connection.Open();
 			SQLiteCommand command = new SQLiteCommand(query, _connection);
 			// comma-separated form of data
 			string dataCSV = "";

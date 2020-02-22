@@ -1,6 +1,5 @@
 ﻿using ScoutingClient2020.Commands;
 using ScoutingClient2020.Models;
-using System.Collections.Generic;
 using System.Windows.Input;
 
 namespace ScoutingClient2020.ViewModels {
@@ -8,14 +7,11 @@ namespace ScoutingClient2020.ViewModels {
 		public TeamList TeamList { get; set; }
 		public int SelectedTeam { get => _selectedTeam; set { _selectedTeam = value; Update(); } }
 
-		public Stat LowerAvgAuto { get; set; }
-		public Stat LowerAvgTele { get; set; }
+		public Stat LowAvgAuto { get; set; }
+		public Stat LowAvgTele { get; set; }
 
-		public Stat OuterAvgAuto { get; set; }
-		public Stat OuterAvgTele { get; set; }
-
-		public Stat InnerAvgAuto { get; set; }
-		public Stat InnerAvgTele { get; set; }
+		public Stat HighAvgAuto { get; set; }
+		public Stat HighAvgTele { get; set; }
 
 		public Stat TotalAvgAuto { get; set; }
 		public Stat TotalAvgTele { get; set; }
@@ -24,16 +20,13 @@ namespace ScoutingClient2020.ViewModels {
 		public Stat TotalMaxAuto { get; set; }
 		public Stat TotalMaxTele { get; set; }
 
-		public Stat MissedAvgAuto { get; set; }
-		public Stat MissedAvgTele { get; set; }
-
 		public Stat DroppedAvgAuto { get; set; }
 		public Stat DroppedAvgTele { get; set; }
 
-		public Stat PointsAvgAuto { get; set; }
-		public Stat PointsAvgTele { get; set; }
-		public Stat PointsMaxAuto { get; set; }
-		public Stat PointsMaxTele { get; set; }
+		//public Stat PointsAvgAuto { get; set; }
+		//public Stat PointsAvgTele { get; set; }
+		//public Stat PointsMaxAuto { get; set; }
+		//public Stat PointsMaxTele { get; set; }
 
 		public Stat FoulsAvg { get; set; }
 
@@ -49,32 +42,26 @@ namespace ScoutingClient2020.ViewModels {
 		/// Initializes a new instance of the TeamStatsViewModel class.
 		/// </summary>
 		public TeamStatsViewModel() {
-			LowerAvgAuto = new Stat("SELECT AVG(AutoLower) FROM RawData WHERE TeamNumber = {0};", "Auto");
-			LowerAvgTele = new Stat("SELECT AVG(TeleLower) FROM RawData WHERE TeamNumber = {0};", "Teleop");
+			LowAvgAuto = new Stat("SELECT AVG(AutoLow) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			LowAvgTele = new Stat("SELECT AVG(TeleLow) FROM RawData WHERE TeamNumber = {0};", "Teleop");
 
-			OuterAvgAuto = new Stat("SELECT AVG(AutoOuter) FROM RawData WHERE TeamNumber = {0};", "Auto");
-			OuterAvgTele = new Stat("SELECT AVG(TeleOuter) FROM RawData WHERE TeamNumber = {0};", "Teleop");
+			HighAvgAuto = new Stat("SELECT AVG(AutoHigh) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			HighAvgTele = new Stat("SELECT AVG(TeleHigh) FROM RawData WHERE TeamNumber = {0};", "Teleop");
 
-			InnerAvgAuto = new Stat("SELECT AVG(AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto");
-			InnerAvgTele = new Stat("SELECT AVG(TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop");
-
-			TotalAvgAuto = new Stat("SELECT AVG(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto");
-			TotalAvgTele = new Stat("SELECT AVG(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop");
-			TotalPercentAuto = new Stat("SELECT 100.0 * (SUM(AutoLower + AutoOuter + AutoInner) - SUM(AutoMissed)) / SUM(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto Accuracy", "%");
-			TotalPercentTele = new Stat("SELECT 100.0 * (SUM(TeleLower + TeleOuter + TeleInner) - SUM(TeleMissed)) / SUM(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop Accuracy", "%");
-			TotalMaxAuto = new Stat("SELECT MAX(AutoLower + AutoOuter + AutoInner) FROM RawData WHERE TeamNumber = {0};", "Auto Max");
-			TotalMaxTele = new Stat("SELECT MAX(TeleLower + TeleOuter + TeleInner) FROM RawData WHERE TeamNumber = {0};", "Teleop Max");
-
-			MissedAvgAuto = new Stat("SELECT AVG(AutoMissed) FROM RawData WHERE TeamNumber = {0};", "Auto");
-			MissedAvgTele = new Stat("SELECT AVG(TeleMissed) FROM RawData WHERE TeamNumber = {0};", "Teleop");
+			TotalAvgAuto = new Stat("SELECT AVG(AutoLow + AutoHigh) FROM RawData WHERE TeamNumber = {0};", "Auto");
+			TotalAvgTele = new Stat("SELECT AVG(TeleLow + TeleHigh) FROM RawData WHERE TeamNumber = {0};", "Teleop");
+			TotalPercentAuto = new Stat("SELECT 100.0 * SUM(AutoLow + AutoHigh) / (SUM(AutoLow + AutoHigh) + SUM(AutoDropped)) FROM RawData WHERE TeamNumber = {0};", "Auto Accuracy", "%");
+			TotalPercentTele = new Stat("SELECT 100.0 * SUM(TeleLow + TeleHigh) / (SUM(TeleLow + TeleHigh) + SUM(TeleDropped)) FROM RawData WHERE TeamNumber = {0};", "Teleop Accuracy", "%");
+			TotalMaxAuto = new Stat("SELECT MAX(AutoLow + AutoHigh) FROM RawData WHERE TeamNumber = {0};", "Auto Max");
+			TotalMaxTele = new Stat("SELECT MAX(TeleLow + TeleHigh) FROM RawData WHERE TeamNumber = {0};", "Teleop Max");
 
 			DroppedAvgAuto = new Stat("SELECT AVG(AutoDropped) FROM RawData WHERE TeamNumber = {0};", "Auto");
 			DroppedAvgTele = new Stat("SELECT AVG(TeleDropped) FROM RawData WHERE TeamNumber = {0};", "Teleop");
 
-			PointsAvgAuto = new Stat("SELECT AVG(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Auto Avg");
-			PointsAvgTele = new Stat("SELECT AVG(TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Teleop Avg");
-			PointsMaxAuto = new Stat("SELECT MAX(InitLine * 5 + AutoLower * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Auto Max");
-			PointsMaxTele = new Stat("SELECT MAX(TeleLower * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Teleop Max");
+			//PointsAvgAuto = new Stat("SELECT AVG(InitLine * 5 + AutoLow * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Auto Avg");
+			//PointsAvgTele = new Stat("SELECT AVG(TeleLow * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Teleop Avg");
+			//PointsMaxAuto = new Stat("SELECT MAX(InitLine * 5 + AutoLow * 2 + AutoOuter * 4 + AutoInner * 6) FROM RawData WHERE TeamNumber = {0};", "Auto Max");
+			//PointsMaxTele = new Stat("SELECT MAX(TeleLow * 1 + TeleOuter * 2 + TeleInner * 3 + RotationControl * 10 + PositionControl * 20 + ClimbSuccess * 25 + Park * 5 + ClimbBalanced * 15) FROM RawData WHERE TeamNumber = {0};", "Teleop Max");
 
 			FoulsAvg = new Stat("SELECT AVG(Fouls) FROM RawData WHERE TeamNumber = {0};", "Fouls");
 
@@ -86,26 +73,22 @@ namespace ScoutingClient2020.ViewModels {
 			UpdateTeamStatsListCommand = new UpdateTeamStatsListCommand(this);
 
 			_stats = new Stat[] {
-				LowerAvgAuto,
-				LowerAvgTele,
-				OuterAvgAuto,
-				OuterAvgTele,
-				InnerAvgAuto,
-				InnerAvgTele,
+				LowAvgAuto,
+				LowAvgTele,
+				HighAvgAuto,
+				HighAvgTele,
 				TotalAvgAuto,
 				TotalAvgTele,
 				TotalPercentAuto,
 				TotalPercentTele,
 				TotalMaxAuto,
 				TotalMaxTele,
-				MissedAvgAuto,
-				MissedAvgTele,
 				DroppedAvgAuto,
 				DroppedAvgTele,
-				PointsAvgAuto,
-				PointsAvgTele,
-				PointsMaxAuto,
-				PointsMaxTele,
+				//PointsAvgAuto,
+				//PointsAvgTele,
+				//PointsMaxAuto,
+				//PointsMaxTele,
 				FoulsAvg,
 				InitLinePercent,
 				ClimbPercent

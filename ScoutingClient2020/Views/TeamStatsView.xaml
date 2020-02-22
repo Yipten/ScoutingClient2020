@@ -18,19 +18,14 @@
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<StackPanel Orientation="Vertical">
-					<Label Content="Lower Port" FontWeight="Bold" />
-					<Label Content="{Binding LowerAvgAuto.Display}" />
-					<Label Content="{Binding LowerAvgTele.Display}" />
+					<Label Content="Low Port" FontWeight="Bold" />
+					<Label Content="{Binding LowAvgAuto.Display}" />
+					<Label Content="{Binding LowAvgTele.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
-					<Label Content="Outer Port" FontWeight="Bold" />
-					<Label Content="{Binding OuterAvgAuto.Display}" />
-					<Label Content="{Binding OuterAvgTele.Display}" />
-				</StackPanel>
-				<StackPanel Orientation="Vertical" >
-					<Label Content="Inner Port" FontWeight="Bold" />
-					<Label Content="{Binding InnerAvgAuto.Display}" />
-					<Label Content="{Binding InnerAvgTele.Display}" />
+					<Label Content="High Port" FontWeight="Bold" />
+					<Label Content="{Binding HighAvgAuto.Display}" />
+					<Label Content="{Binding HighAvgTele.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
 					<Label Content="Total of All Ports" FontWeight="Bold" />
@@ -42,22 +37,17 @@
 					<Label Content="{Binding TotalMaxTele.Display}" />
 				</StackPanel>
 				<StackPanel Orientation="Vertical">
-					<Label Content="Missed" FontWeight="Bold" />
-					<Label Content="{Binding MissedAvgAuto.Display}" />
-					<Label Content="{Binding MissedAvgTele.Display}" />
-				</StackPanel>
-				<StackPanel Orientation="Vertical">
 					<Label Content="Dropped" FontWeight="Bold" />
 					<Label Content="{Binding DroppedAvgAuto.Display}" />
 					<Label Content="{Binding DroppedAvgTele.Display}" />
 				</StackPanel>
-				<StackPanel Orientation="Vertical">
+				<!--<StackPanel Orientation="Vertical">
 					<Label Content="Points" FontWeight="Bold" />
 					<Label Content="{Binding PointsAvgAuto.Display}" />
 					<Label Content="{Binding PointsAvgTele.Display}" />
 					<Label Content="{Binding PointsMaxAuto.Display}" />
 					<Label Content="{Binding PointsMaxTele.Display}" />
-				</StackPanel>
+				</StackPanel>-->
 				<StackPanel Orientation="Vertical">
 					<Label Content="An Interesting Title" FontWeight="Bold" />
 					<Label Content="{Binding InitLinePercent.Display}" />
