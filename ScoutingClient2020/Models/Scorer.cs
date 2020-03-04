@@ -3,10 +3,10 @@
 namespace ScoutingClient2020.Models {
 	class Scorer : INotifyPropertyChanged {
 		public bool InitLine { get => _initLine; set { _initLine = value; OnPropertyChanged(nameof(InitLine)); UpdateScore(); } }
-		public int AutoLower { get => _AutoLower; set { _AutoLower = value; OnPropertyChanged(nameof(AutoLower)); UpdateScore(); } }
+		public int AutoLower { get => _autoLower; set { _autoLower = value; OnPropertyChanged(nameof(AutoLower)); UpdateScore(); } }
 		public int AutoOuter { get => _autoOuter; set { _autoOuter = value; OnPropertyChanged(nameof(AutoOuter)); UpdateScore(); } }
 		public int AutoInner { get => _autoInner; set { _autoInner = value; OnPropertyChanged(nameof(AutoInner)); UpdateScore(); } }
-		public int TeleLower { get => _TeleLower; set { _TeleLower = value; OnPropertyChanged(nameof(TeleLower)); UpdateScore(); } }
+		public int TeleLower { get => _teleLower; set { _teleLower = value; OnPropertyChanged(nameof(TeleLower)); UpdateScore(); } }
 		public int TeleOuter { get => _teleOuter; set { _teleOuter = value; OnPropertyChanged(nameof(TeleOuter)); UpdateScore(); } }
 		public int TeleInner { get => _teleInner; set { _teleInner = value; OnPropertyChanged(nameof(TeleInner)); UpdateScore(); } }
 		public bool RotationControl { get => _rotationControl; set { _rotationControl = value; OnPropertyChanged(nameof(RotationControl)); UpdateScore(); } }
@@ -17,10 +17,10 @@ namespace ScoutingClient2020.Models {
 		public string ScoreStr { get => _scoreStr; set { _scoreStr = value; OnPropertyChanged(nameof(ScoreStr)); } }
 
 		private bool _initLine;
-		private int _AutoLower;
+		private int _autoLower;
 		private int _autoOuter;
 		private int _autoInner;
-		private int _TeleLower;
+		private int _teleLower;
 		private int _teleOuter;
 		private int _teleInner;
 		private bool _rotationControl;
